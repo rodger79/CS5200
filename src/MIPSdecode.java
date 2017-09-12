@@ -1,10 +1,12 @@
+/****************************************************************
+ * Rodger Byrd
+ * Program 1
+ * 9/11/2017
+ * MIPS instruction decoding 
+ */
+
 import java.io.*;
-import java.util.*;
 import java.io.IOException;
-import java.nio.*;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 
 public class MIPSdecode {
 	
@@ -19,10 +21,7 @@ public class MIPSdecode {
 	//output string
 	private static String[] output = new String[13];
 	
-	/**
-	 * @param args
-	 * @throws IOException 
-	 */
+
 	public static void main(String[] args) throws IOException  {
 
 		//read Instructions file
@@ -32,7 +31,8 @@ public class MIPSdecode {
 		for (int i = 0; i < address.length; i++){
  		   address[i] = instructions[i].substring(0,10);	   
 		}
-		//convert MIPS instruction to Int array
+		
+		//convert MIPS instruction to char array
 		for (int i = 0; i < instructions.length; i++){
 			String temp = instructions[i].substring(13,21);
 			for (int j = 0; j < 8 ; j++) {
@@ -52,47 +52,24 @@ public class MIPSdecode {
 		}
  	   
 		//decode instructions
-		for (int i = 0; i < instructions.length; i++){
-			System.out.println(MIPSInstruction[i]);
-			System.out.println(binaryInst[i]);
-			System.out.println(decode(binaryInst[i]));
-			writeResults(decode(binaryInst[i]));
+		writeResults();
 		
-		}
-		
-		//call to write to output
-			writeResults("");
-		
-		//Debug
-		/*
-		for (int i = 0; i < instructions.length; i++){
-		   System.out.println(instructions[i]);
-		   System.out.println(address[i]);
-		   System.out.println(binaryInst[i]);
-		}
-	
-		for (int i = 0; i < instructions.length; i++){
-				for (int j = 0; j < 8 ; j++) {
-					System.out.println(MIPSInstruction[i][j]);
-				}
-		}*/
 
 
 	}
-	
+	//parse the opcodes and instruction data
+	//takes instruction in binary string format and returns assembly instruction
 	public static String decode(String instruction){
 		String result = "";
-		String t = instruction.substring(11,16);
-		String s = instruction.substring(6,11);
-		String opcode = instruction.substring(0,6);
-		String funct = instruction.substring(26,32);
-		//System.out.println( opcode + " " + funct);
+		String t = instruction.substring(11,16); 		//binary value of rt 
+		String s = instruction.substring(6,11);  		//binary value of rs
+		String opcode = instruction.substring(0,6);		//binary value of opcode
+		String funct = instruction.substring(26,32);	//binary value of funct
 		switch (opcode) {
 			case "001000": //addi
 				result = "addi" + "\t"; 
 				result += registerLookup(t) + ", ";
 				result += registerLookup(s) + ", ";
-				//result += registerLookup(instruction.substring(27,32));
 				result += Integer.parseInt(instruction.substring(16,32), 2);
 				break;	
 			case "001111": //lui
@@ -125,21 +102,11 @@ public class MIPSdecode {
 				break;	
 			case "000010": //jump
 				result = "j" + "\t\t"; 
-				int temp = Integer.parseInt(instruction.substring(7,32), 2);
+				int temp = 4 * Integer.parseInt(instruction.substring(7,32), 2);
 				result += String.format("0x%08X",temp);
 				break;	
 			case "000000": 
-				result = "syscall";
-				/*
-				System.out.println("funct = " + funct +" for syscall");
-				if (funct == "001100"){
-					
-					result = "syscall";
-				} else{
-					result = "error";
-				}
-					*/
-				
+				result = "syscall";				
 				break;	
 			default:
 				result = "error"; 
@@ -147,25 +114,11 @@ public class MIPSdecode {
 		}
 		return result;
 	}
-	
+	//read in the text file to instruction array
 	public static void readInstructions(String filename) throws IOException{
 
 		File file = new File("MachineInstructions.txt");
-		/*
-        if(file.exists()){
-            System.out.println("file exists");
-        }
-        else{
-            System.out.println("file doesn't exist");
-        }
-        //System.out.println("[" + file.getAbsolutePath() + "]");
 
-        if(file.canRead()){
-            System.out.println("can read");
-        }
-        if(file.canWrite()){
-            System.out.println("can write");
-        }*/
         
        try {
     	   InputStream inputStream = new FileInputStream(file);
@@ -186,7 +139,9 @@ public class MIPSdecode {
 	   }
 
 	}
-	public static void writeResults(String input){
+	
+	//decode the instructions and write them to a file
+	public static void writeResults(){
 
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Program1.txt"), "utf-8"))) {
 			for (int i = 0; i < instructions.length; i++){
@@ -194,17 +149,15 @@ public class MIPSdecode {
 				writer.write(address[i] + "\t" + decode(binaryInst[i])+"\n");
 			}
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
+	//lookup for register names
 	public static String registerLookup (String input){
 		String result = "";
 		switch (input) {
@@ -310,6 +263,8 @@ public class MIPSdecode {
 		}
 		return result;
 	}
+	
+	//quick conversion for hex to string
 	public static String hextoString (char input){
 		String result = "";
 		switch (input) {
