@@ -6,7 +6,6 @@
  */
 
 import java.io.*;
-import java.io.IOException;
 
 public class MIPSdecode {
 	
@@ -21,11 +20,28 @@ public class MIPSdecode {
 	//output string
 	private static String[] output = new String[13];
 	
+	
+	//Instantiate Instruction Memory
+	private static MIPSmemory instructionMemory = new MIPSmemory(0,0);
+	//Instantiate Data Memory
+	private static MIPSmemory dataMemory = new MIPSmemory(1,9);
+	//declare program counter
+	private static long programCounter = 0;
+	//Define registers
+	private static long[] registers = new long[32];
+	
 
 	public static void main(String[] args) throws IOException  {
 
-		//read Instructions file
+		//read Instructions file		
 		readInstructions("MachineInstructions.txt");
+		
+		System.out.println("Instruction memory size: " + instructionMemory.size());
+		//check memory
+		instructionMemory.print();
+		System.out.println("dataMemory memory size: " + dataMemory.size());
+		dataMemory.print();
+		System.out.println("program counter: 0x" + String.format("%08X", programCounter));
 		
 		//pull out addresses
 		for (int i = 0; i < address.length; i++){
@@ -128,9 +144,16 @@ public class MIPSdecode {
     	   int i = 0;
     	   String strLine;
     	   while ((strLine = br.readLine()) != null) {
-    		   instructions[i] = strLine;
-    		   i++;
+    		   instructions[i] = strLine; //remove later deprecated version of HW1
 
+    		   String[] parts = strLine.split("\t");
+    		   
+    		   long key = Long.decode(parts[0]);
+    		   long value = Long.decode(parts[1]);	   
+    		   instructionMemory.store(key,value);
+    		   
+    		   if (i == 0) programCounter = key; //initialize program counter
+    		   i++;
     	    }
     	    inputStream.close();
     	   
