@@ -1,139 +1,99 @@
 /****************************************************************
  * Rodger Byrd
  * Program 1
- * 9/11/2017
- * MIPS instruction decoding 
+ * 9/24/2017
+ * MIPS instruction decoding and implementation
  */
 
 import java.io.*;
 
 public class MIPSdecode {
 	
-	//full list of instructions in string format
-	private static String[] instructions = new String[13];
-	//address only in string format
-	private static String[] address = new String[13];
-	//MIPS instruction in HEX saved as char arrays
-	private static char[][] MIPSInstruction = new char[13][8];
-	//binary string representation of hex
-	private static String[] binaryInst = new String[13];
-	//output string
-	private static String[] output = new String[13];
-	
-	
 	//Instantiate Instruction Memory
 	private static MIPSmemory instructionMemory = new MIPSmemory(0,0);
 	//Instantiate Data Memory
 	private static MIPSmemory dataMemory = new MIPSmemory(1,9);
-	//declare program counter
-	private static long programCounter = 0;
+	
 	//Define registers
 	private static long[] registers = new long[32];
-	
 
 	public static void main(String[] args) throws IOException  {
 
 		//read Instructions file		
 		readInstructions("MachineInstructions.txt");
 		
-		System.out.println("Instruction memory size: " + instructionMemory.size());
 		//check memory
-		instructionMemory.print();
-		System.out.println("dataMemory memory size: " + dataMemory.size());
-		dataMemory.print();
-		System.out.println("program counter: 0x" + String.format("%08X", programCounter));
+		instructionMemory.print("IMDump.txt");
+		dataMemory.print("DMDumpBefore.txt");
 		
-		//pull out addresses
-		for (int i = 0; i < address.length; i++){
- 		   address[i] = instructions[i].substring(0,10);	   
-		}
-		
-		//convert MIPS instruction to char array
-		for (int i = 0; i < instructions.length; i++){
-			String temp = instructions[i].substring(13,21);
-			for (int j = 0; j < 8 ; j++) {
-				MIPSInstruction[i][j] = new Character(temp.charAt(j));
-				//System.out.println(MIPSInstruction[i][j]);
-			}
-		}
-		
-		//build binary string
-		for (int i = 0; i < instructions.length; i++){
-			for (int j = 0; j < 8 ; j++) {
-				if (j == 0)
-					binaryInst[i] = hextoString(MIPSInstruction[i][j]);
-				else
-					binaryInst[i] += hextoString(MIPSInstruction[i][j]);
-			}
-		}
- 	   
-		//decode instructions
-		writeResults();
-		
+		//decode instructions remove
+	
+		int syscall = 0;
+		while (syscall == 0){
+			
+			//use program counter to get next instruction
+			long instruction = instructionMemory.load(instructionMemory.instructionPC());
+			
+			//increment program counter
+			instructionMemory.incPC();
+			
+			//decode instruction
+			int opcode = (int)(instruction >> 26);
+			long jumpLoc = (instruction &  0x03ffffff) << 2;
+			long rs = (instruction >> 21 ) &  0x1f;
+			long rt = (instruction >> 16 ) &  0x1f;
+			int imm = (int) (instruction & 0xffff);
+			long fct = instruction & 0x1f;
 
-
+			syscall = decodeLong(opcode,jumpLoc,rs,rt,imm, fct);
+		
+			dataMemory.print("DMDumpAfter.txt");
+		}
 	}
 	//parse the opcodes and instruction data
 	//takes instruction in binary string format and returns assembly instruction
-	public static String decode(String instruction){
-		String result = "";
-		String t = instruction.substring(11,16); 		//binary value of rt 
-		String s = instruction.substring(6,11);  		//binary value of rs
-		String opcode = instruction.substring(0,6);		//binary value of opcode
-		String funct = instruction.substring(26,32);	//binary value of funct
-		switch (opcode) {
-			case "001000": //addi
-				result = "addi" + "\t"; 
-				result += registerLookup(t) + ", ";
-				result += registerLookup(s) + ", ";
-				result += Integer.parseInt(instruction.substring(16,32), 2);
-				break;	
-			case "001111": //lui
-				result = "lui " + "\t" + registerLookup(t) + ", ";
-				result += Integer.parseInt(instruction.substring(16,32), 2);
-				break;	
-			case "001101": //ori
-				result = "ori " + "\t"; 
-				result += registerLookup(t) + ", ";
-				result += registerLookup(s) + ", ";
-				result += Integer.parseInt(instruction.substring(27,32), 2);
-				break;
-			case "100011": //lw
-				result = "lw" + "\t\t"; 
-				result += registerLookup(t) + ", ";
-				result += Integer.parseInt(instruction.substring(16,32), 2);
-				result += "(" +registerLookup(s) + ")";
-				break;	
-			case "101011": //sw
-				result = "sw" + "\t\t"; 
-				result += registerLookup(t) + ", ";
-				result += Integer.parseInt(instruction.substring(16,32), 2);
-				result += "(" +registerLookup(s) + ")";
-				break;	
-			case "000100": //beq
-				result = "beq" + "\t\t"; 
-				result += registerLookup(s) + ", ";
-				result += registerLookup(t) + ", ";
-				result += Integer.parseInt(instruction.substring(16,32), 2);
-				break;	
-			case "000010": //jump
-				result = "j" + "\t\t"; 
-				int temp = 4 * Integer.parseInt(instruction.substring(7,32), 2);
-				result += String.format("0x%08X",temp);
-				break;	
-			case "000000": 
-				result = "syscall";				
-				break;	
-			default:
-				result = "error"; 
-				break;
+	public static int decodeLong(int opcode, long jumpLoc, long rs, long rt, int imm, long fct){
+			int retval = 0;
+			switch (opcode) {
+				case 0: //syscall
+					if (fct == 12) 
+						retval = 1;
+					else
+						retval = -1; //error condition
+					break;
+				case 2: //jump
+					instructionMemory.setPC(jumpLoc);
+					break;	
+				case 4: //beq
+					if (registers[(int) rt] == registers[(int) rs])
+						instructionMemory.setPC(instructionMemory.instructionPC() + fct*4);
+					break;	
+				case 8: //addi
+					registers[(int) rt] = registers[(int) rs] + imm;
+					break;	
+				case 13: //ori
+					registers[(int) rt] = registers[(int) rs] | imm;
+					break;
+				case 15: //lui
+					registers[(int) rt] = imm << 16;
+					break;	
+				case 35: //lw
+					registers[(int) rt]  = dataMemory.load(registers[(int) rs]);
+					break;	
+				case 43: //sw
+					dataMemory.store(registers[(int) rs], registers[(int) rt]);
+					break;	
+				default:
+					//error condition
+					retval= -1;
+					break;
+			}
+			return retval;
 		}
-		return result;
-	}
 	//read in the text file to instruction array
 	public static void readInstructions(String filename) throws IOException{
 
-		File file = new File("MachineInstructions.txt");
+		File file = new File(filename);
 
         
        try {
@@ -144,7 +104,7 @@ public class MIPSdecode {
     	   int i = 0;
     	   String strLine;
     	   while ((strLine = br.readLine()) != null) {
-    		   instructions[i] = strLine; //remove later deprecated version of HW1
+    		   //instructions[i] = strLine; //remove later deprecated version of HW1
 
     		   String[] parts = strLine.split("\t");
     		   
@@ -152,7 +112,7 @@ public class MIPSdecode {
     		   long value = Long.decode(parts[1]);	   
     		   instructionMemory.store(key,value);
     		   
-    		   if (i == 0) programCounter = key; //initialize program counter
+    		   if (i == 0)  instructionMemory.setPC(key); //initialize program counter
     		   i++;
     	    }
     	    inputStream.close();
@@ -163,121 +123,104 @@ public class MIPSdecode {
 
 	}
 	
-	//decode the instructions and write them to a file
-	public static void writeResults(){
-
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Program1.txt"), "utf-8"))) {
-			for (int i = 0; i < instructions.length; i++){
-
-				writer.write(address[i] + "\t" + decode(binaryInst[i])+"\n");
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
 	//lookup for register names
-	public static String registerLookup (String input){
+	public static String registerLookup (int input){
 		String result = "";
 		switch (input) {
-		case "00000":
+		case 0:
 			result = "$0";
 			break;
-		case "00001":
+		case 1:
 			result = "$at";
 			break;
-		case "00010":
+		case 2:
 			result = "$v0";
 			break;
-		case "00011":
+		case 3:
 			result = "$v1";
 			break;
-		case "00100":
+		case 4:
 			result = "$a0";
 			break;
-		case "00101":
+		case 5:
 			result = "$a1";
 			break;
-		case "00110":
+		case 6:
 			result = "$a2";
 			break;
-		case "00111":
+		case 7:
 			result = "$a3";
 			break;
-		case "01000":
+		case 8:
 			result = "$t0";
 			break;
-		case "01001":
+		case 9:
 			result = "$t1";
 			break;
-		case "01010":
+		case 10:
 			result = "$t2";
 			break;
-		case "01011":
+		case 11:
 			result = "$t3";
 			break;
-		case "01100":
+		case 12:
 			result = "$t4";
 			break;
-		case "01101":
+		case 13:
 			result = "$t5";
 			break;
-		case "01110":
+		case 14:
 			result = "$t6";
 			break;
-		case "01111":
+		case 15:
 			result = "$t7";
 			break;
-		case "10000":
+		case 16:
 			result = "$s0";
 			break;
-		case "10001":
+		case 17:
 			result = "$s1";
 			break;
-		case "10010":
+		case 18:
 			result = "$s2";
 			break;
-		case "10011":
+		case 19:
 			result = "$s3";
 			break;
-		case "10100":
+		case 20:
 			result = "$s4";
 			break;
-		case "10101":
+		case 21:
 			result = "$s5";
 			break;
-		case "10110":
+		case 22:
 			result = "$s6";
 			break;
-		case "10111":
+		case 23:
 			result = "$s7";
 			break;
-		case "11000":
+		case 24:
 			result = "$t8";
 			break;
-		case "11001":
+		case 25:
 			result = "$t9";
 			break;
-		case "11010":
+		case 26:
 			result = "$k0";
 			break;
-		case "11011":
+		case 27:
 			result = "$k1";
 			break;
-		case "11100":
+		case 28:
 			result = "$gp";
 			break;
-		case "11101":
+		case 29:
 			result = "$sp";
 			break;
-		case "11110":
+		case 30:
 			result = "$fp";
 			break;
-		case "11111":
+		case 31:
 			result = "$ra";
 			break;
 		default:
