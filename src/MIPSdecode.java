@@ -6,6 +6,14 @@
  */
 
 import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+
 
 public class MIPSdecode {
 	
@@ -55,6 +63,8 @@ public class MIPSdecode {
 		
 		boolean issue = true;
 		while (issue){
+
+			
 			//use program counter to get next instruction
 			long instruction = instructionMemory.load(programCounter);
 			
@@ -70,6 +80,10 @@ public class MIPSdecode {
 			long fct = instruction & 0x1f;
 
 			issue = issueInstruction(opcode,jumpLoc,(int)rs,(int)rt,imm, fct);
+			
+			//end loop if out of reservation stations
+			if ((reservationStations.length-1) == nextAvailableRS()) issue = false;
+
 		}
 	/*
 	 	//Instructions to implement program2
@@ -94,7 +108,7 @@ public class MIPSdecode {
 		
 			
 		}*/
-		
+		printRS("Reservations.txt");
 		dataMemory.print("DMDumpAfter.txt");
 	}
 	//issue instructions
@@ -104,12 +118,19 @@ public class MIPSdecode {
 		int RSindex = nextAvailableRS();
 		//System.out.println("RS Index: " + RSindex);
 		reservationStation RS = new reservationStation();
+		RS.available = false;
 		
 		switch (opcode) {
 			case 0: //syscall
 				if (fct == 12){ 
-					issue = false;
 					instruction =("Syscall");
+					issue = false;
+					RS.opcode = opcode;
+					RS.fct = fct;
+					RS.aPRNum = AVR[2];
+					RS.aRequired = true;
+					RS.instruction = instruction;
+					reservationStations[RSindex] = RS;
 				} else
 					//error condition
 				break;
@@ -118,7 +139,17 @@ public class MIPSdecode {
 				programCounter = jumpLoc;
 				break;	
 			case 4: //beq
-				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rs] + ", " + strRegisters[(int)rt] + ", " + imm);
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rs] + ", " + strRegisters[(int)rt] + ", " + imm + "\t");
+				RS.opcode = opcode;
+				RS.aPRNum = AVR[rs];
+				RS.bPRNum = AVR[rt];
+				RS.aRequired = RS.bRequired = true;
+				if (physicalRegisters[RS.aPRNum].valid) RS.aReady = true;
+				if (physicalRegisters[RS.bPRNum].valid) RS.bReady = true;
+				RS.immRequired = true;
+				RS.imm = imm;
+				RS.instruction = instruction;
+				reservationStations[RSindex] = RS;
 				issue = false;
 				break;	
 			case 8: //addi
@@ -140,12 +171,13 @@ public class MIPSdecode {
 				physicalRegisters[nextAvailablePE()].available = false;
 				RS.bRequired = false;
 				RS.immRequired = true;
-				
+				RS.imm = imm;
+				if (rs == rt) RS.aReused = false;
 				RS.instruction = instruction;
 				reservationStations[RSindex] = RS;
 				break;	
 			case 13: //ori
-				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + strRegisters[(int)rs] + ", " + imm);
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + strRegisters[(int)rs] + ", " + imm + "\t");
 				RS.opcode = opcode;
 				RS.aPRNum = AVR[rs];
 				RS.bPRNum = nextAvailablePE();
@@ -159,12 +191,32 @@ public class MIPSdecode {
 				reservationStations[RSindex] = RS;
 				break;
 			case 15: //lui
-				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm);
-
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "\t");
+				RS.opcode = opcode;
+				RS.bPRNum = nextAvailablePE();
+				physicalRegisters[nextAvailablePE()].available = false;
+				RS.bRequired = false;
+				RS.immRequired = true;
+				RS.imm = imm;
+				RS.instruction = instruction;
+				reservationStations[RSindex] = RS;
 				break;	
 			case 35: //lw
-				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "(" + strRegisters[(int)rs] + ")");
-
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "(" + strRegisters[(int)rs] + ")\t");
+				RS.opcode = opcode;
+				RS.aPRNum = AVR[rs];
+				RS.aRequired = true;
+				if (physicalRegisters[AVR[rs]].valid == true){
+					RS.aData = physicalRegisters[AVR[rs]].data;
+					RS.aReady = true;
+				}
+				RS.bPRNum = nextAvailablePE();
+				physicalRegisters[nextAvailablePE()].available = false;
+				RS.bRequired = false;
+				RS.immRequired = true;
+				RS.imm = imm;
+				RS.instruction = instruction;
+				reservationStations[RSindex] = RS;
 				break;	
 			case 43: //sw
 				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "(" + strRegisters[(int)rs] + ")");
@@ -176,6 +228,7 @@ public class MIPSdecode {
 		}
 		
 		System.out.println(instruction);		
+		//System.out.println(reservationStations[RSindex].opcode);
 		return issue;
 	}
 	
@@ -229,7 +282,37 @@ public class MIPSdecode {
 			}
 			System.out.println(instruction);
 			return retval;
-		}
+	}
+	
+	public static void printRS(String filename) throws UnsupportedEncodingException, FileNotFoundException, IOException{
+		
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"))) {
+			writer.write("instruction\t\t\topcode\tfct\taPRNum\taData\taReady\taRequired\taReused\tbPRNum\tbData" + 
+					"bReady\tbRequired\tbReused\tmemIndex\timmRequired\timm\n");
+
+			for (int i=0; i<reservationStations.length; i++){
+				if(reservationStations[i].available == false){
+		          writer.write(reservationStations[i].instruction + "\t" +
+		        		  reservationStations[i].opcode + "\t" +
+		        		  reservationStations[i].fct + "\t" +
+		        		  reservationStations[i].aPRNum + "\t" +
+		        		  reservationStations[i].aData + "\t" +
+		        		  reservationStations[i].aReady + "\t" +
+		        		  reservationStations[i].aRequired + "\t" +
+		        		  reservationStations[i].aReused + "\t" +
+		        		  reservationStations[i].bPRNum + "\t" +
+		        		  reservationStations[i].bData + "\t" +
+		        		  reservationStations[i].bReady + "\t" +
+		        		  reservationStations[i].bRequired + "\t" +
+		        		  reservationStations[i].bReused + "\t" +
+		        		  reservationStations[i].immRequired+ "\t" +
+		        		  reservationStations[i].imm + "\t" + "\n");
+
+
+				}
+			}
+		    }
+	}
 	//find next available register
 	public static int nextAvailablePE(){
 		int retval = -1;
