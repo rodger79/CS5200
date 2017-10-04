@@ -26,7 +26,10 @@ public class MIPSdecode {
 	private static long[] registers = new long[32];
 	
 	private static physicalRegister[] physicalRegisters = new physicalRegister[1024];
-
+	private static reservationStation[] reservationStations = new reservationStation[1024];
+	
+	private static int[] AVR = new int[32];
+	
 	public static void main(String[] args) throws IOException  {
 		
 		//initialize registers
@@ -35,6 +38,11 @@ public class MIPSdecode {
 			physicalRegisters[i].available = true;
 			physicalRegisters[i].data = 0L;
 			physicalRegisters[i].valid = false;
+		}
+		for (int i=0; i < reservationStations.length;i++ ){
+			reservationStations[i] = new reservationStation();
+			reservationStations[i].available = true;
+
 		}
 		//System.out.println("phys reg size:" + physicalRegisters.length + " next avail: " + nextAvailablePE());
 
@@ -45,8 +53,26 @@ public class MIPSdecode {
 		instructionMemory.print("IMDump.txt");
 		dataMemory.print("DMDumpBefore.txt");
 		
+		boolean issue = true;
+		while (issue){
+			//use program counter to get next instruction
+			long instruction = instructionMemory.load(programCounter);
+			
+			//increment program counter
+			programCounter = programCounter + 4;
+			
+			//decode instruction
+			int opcode = (int)(instruction >> 26);
+			long jumpLoc = (instruction &  0x03ffffff) << 2;
+			long rs = (instruction >> 21 ) &  0x1f;
+			long rt = (instruction >> 16 ) &  0x1f;
+			int imm = (int) (instruction & 0xffff);
+			long fct = instruction & 0x1f;
 
-	
+			issue = issueInstruction(opcode,jumpLoc,(int)rs,(int)rt,imm, fct);
+		}
+	/*
+	 	//Instructions to implement program2
 		int syscall = 0;
 		while (syscall == 0){
 			
@@ -67,14 +93,98 @@ public class MIPSdecode {
 			syscall = decodeLong(opcode,jumpLoc,rs,rt,imm, fct);
 		
 			
-		}
+		}*/
+		
 		dataMemory.print("DMDumpAfter.txt");
 	}
+	//issue instructions
+	public static boolean issueInstruction(int opcode, long jumpLoc, int rs, int rt, int imm, long fct){
+		boolean issue = true;
+		String instruction = "invalid inst";
+		int RSindex = nextAvailableRS();
+		//System.out.println("RS Index: " + RSindex);
+		reservationStation RS = new reservationStation();
+		
+		switch (opcode) {
+			case 0: //syscall
+				if (fct == 12){ 
+					issue = false;
+					instruction =("Syscall");
+				} else
+					//error condition
+				break;
+			case 2: //jump
+				instruction = (strInstructions[opcode] + "\t" + String.format("0x%08X", jumpLoc) );
+				programCounter = jumpLoc;
+				break;	
+			case 4: //beq
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rs] + ", " + strRegisters[(int)rt] + ", " + imm);
+				issue = false;
+				break;	
+			case 8: //addi
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + strRegisters[(int)rs] + ", " + imm);
+				RS.opcode = opcode;
+				if (rs == 0){
+					RS.aData = 0;
+					RS.aReady = true;
+				} else {
+					RS.aPRNum = AVR[rs];
+					if (physicalRegisters[AVR[rs]].valid == true){
+						RS.aData = physicalRegisters[AVR[rs]].data;
+						RS.aReady = true;
+					}
+				}
+				RS.aRequired = true;
+				RS.bPRNum = nextAvailablePE();
+				AVR[rt] = RS.bPRNum;
+				physicalRegisters[nextAvailablePE()].available = false;
+				RS.bRequired = false;
+				RS.immRequired = true;
+				
+				RS.instruction = instruction;
+				reservationStations[RSindex] = RS;
+				break;	
+			case 13: //ori
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + strRegisters[(int)rs] + ", " + imm);
+				RS.opcode = opcode;
+				RS.aPRNum = AVR[rs];
+				RS.bPRNum = nextAvailablePE();
+				physicalRegisters[nextAvailablePE()].available = false;
+				AVR[rt] = RS.bPRNum;
+				RS.bRequired = false;
+				RS.immRequired = true;
+				RS.imm = imm;
+				if (rs == rt) RS.aReused = false;
+				RS.instruction = instruction;
+				reservationStations[RSindex] = RS;
+				break;
+			case 15: //lui
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm);
+
+				break;	
+			case 35: //lw
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "(" + strRegisters[(int)rs] + ")");
+
+				break;	
+			case 43: //sw
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "(" + strRegisters[(int)rs] + ")");
+
+				break;	
+			default:
+				//error condition
+				break;
+		}
+		
+		System.out.println(instruction);		
+		return issue;
+	}
+	
 	//parse the opcodes and instruction data
 	//takes instruction in binary string format and returns assembly instruction
 	public static int decodeLong(int opcode, long jumpLoc, long rs, long rt, int imm, long fct){
 			int retval = 0;
 			String instruction = "invalid inst";
+			
 			switch (opcode) {
 				case 0: //syscall
 					if (fct == 12){ 
@@ -117,7 +227,7 @@ public class MIPSdecode {
 					retval= -1;
 					break;
 			}
-			//System.out.println(instruction);
+			System.out.println(instruction);
 			return retval;
 		}
 	//find next available register
@@ -125,6 +235,17 @@ public class MIPSdecode {
 		int retval = -1;
 		for (int i=0; i < physicalRegisters.length;i++ ){
 			if (physicalRegisters[i].available == true){
+				retval = i;
+				break;
+			}
+		}
+		return retval;
+	}	
+	//find next available registration station
+	public static int nextAvailableRS(){
+		int retval = -1;
+		for (int i=0; i < reservationStations.length;i++ ){
+			if (reservationStations[i].available == true){
 				retval = i;
 				break;
 			}
