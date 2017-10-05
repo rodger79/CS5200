@@ -21,22 +21,26 @@ public class MIPSdecode {
 	private static MIPSmemory instructionMemory = new MIPSmemory(0,0);
 	//Instantiate Data Memory
 	private static MIPSmemory dataMemory = new MIPSmemory(1,9);
-	//program counter
+	
+	//program counters
+	//Issue
 	private static long programCounter = 0;
+	//Exec
+	private static long execPC = 0;
 			
 	private static String[] strInstructions = { "","","j","","beq","","","","addi","","","","","ori","","lui",
 												"","","","","","","","","","","","","","","","","","","","lw",
 												"","","","","","","","sw"};
 	
-	private static String[] strRegisters = {"$0","$at","$v0","$v1","$a0","$a1","$a2","$a3","$t0","$t1","$t2","$t3"};
-	
-	private static int[] AVR = new int[12];
-	//private static int[] AVR = {0,1,2,3,4,5,6,7,8,9,10,11};
+
 	
 	//Define registers
 	private static long[] registers = new long[32];
-	
+	private static String[] strRegisters = {"$0","$at","$v0","$v1","$a0","$a1","$a2","$a3","$t0","$t1","$t2","$t3"};
+	private static int[] AVR = new int[12];
 	private static physicalRegister[] physicalRegisters = new physicalRegister[1024];
+	
+	//create array of reservation stations
 	private static reservationStation[] reservationStations = new reservationStation[53];
 	
 	
@@ -56,6 +60,8 @@ public class MIPSdecode {
 		physicalRegisters[0].available = false;
 		physicalRegisters[0].valid = true;
 		/*
+		 * Initial attempt at initialization of PE and AVR registers
+		 *   changed to only init reg0
 		for (int i=0; i < AVR.length;i++ ){
 			//AVR[i] = i;
 			physicalRegisters[AVR[i]].available = false;
@@ -63,12 +69,11 @@ public class MIPSdecode {
 			physicalRegisters[AVR[i]].valid = false;
 		}*/
 		
+		//Initialialize Registration Station Array
 		for (int i=0; i < reservationStations.length;i++ ){
 			reservationStations[i] = new reservationStation();
 			reservationStations[i].available = true;
-
 		}
-		//System.out.println("phys reg size:" + physicalRegisters.length + " next avail: " + nextAvailablePE());
 
 		//read Instructions file		
 		readInstructions("MachineInstructions.txt");
@@ -77,6 +82,8 @@ public class MIPSdecode {
 		instructionMemory.print("IMDump.txt");
 		dataMemory.print("DMDumpBefore.txt");
 		
+		//Issue instructions to RSs
+		//Will insert into exec loop for program4
 		boolean issue = true;
 		while (issue){
 
@@ -102,6 +109,7 @@ public class MIPSdecode {
 
 		}
 	/*
+	 * no longer needed, kept for troubleshooting
 	 	//Instructions to implement program2
 		int syscall = 0;
 		while (syscall == 0){
@@ -129,12 +137,13 @@ public class MIPSdecode {
 	}
 	//issue instructions
 	public static boolean issueInstruction(int opcode, long jumpLoc, int rs, int rt, int imm, long fct){
+		//Init variables
 		boolean issue = true;
 		String instruction = "invalid inst";
 		int RSindex = nextAvailableRS();
-		//System.out.println("RS Index: " + RSindex);
 		reservationStation RS = new reservationStation();
 		RS.available = false;
+		
 		
 		switch (opcode) {
 			case 0: //syscall
@@ -143,34 +152,42 @@ public class MIPSdecode {
 					issue = false;
 					RS.opcode = opcode;
 					RS.fct = fct;
+					
 					RS.aPRNum = AVR[2];
 					RS.aRequired = true;
+					
 					RS.instruction = instruction;
 					reservationStations[RSindex] = RS;
 				} else
+					System.out.println("unrecognized instruction");
 					//error condition
 				break;
 			case 2: //jump
+				//no need to issue 
 				instruction = (strInstructions[opcode] + "\t" + String.format("0x%08X", jumpLoc) );
 				programCounter = jumpLoc;
 				break;	
 			case 4: //beq
 				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rs] + ", " + strRegisters[(int)rt] + ", " + imm + "\t");
 				RS.opcode = opcode;
+				
 				RS.aPRNum = AVR[rs];
 				RS.bPRNum = AVR[rt];
 				RS.aRequired = RS.bRequired = true;
+				
 				if (physicalRegisters[RS.aPRNum].valid) RS.aReady = true;
 				if (physicalRegisters[RS.bPRNum].valid) RS.bReady = true;
+				
 				RS.immRequired = true;
 				RS.imm = imm;
 				RS.instruction = instruction;
 				reservationStations[RSindex] = RS;
-				//issue = false;
+				issue = false;  				//flag to hold issuing on branch
 				break;	
 			case 8: //addi
 				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + strRegisters[(int)rs] + ", " + imm);
 				RS.opcode = opcode;
+				//if RS == 0 set data and ready flag, else use actual register
 				if (rs == 0){
 					RS.aData = 0;
 					RS.aReady = true;
@@ -182,10 +199,12 @@ public class MIPSdecode {
 					}
 				}
 				RS.aRequired = true;
+				
 				RS.bPRNum = nextAvailablePE();
 				physicalRegisters[RS.bPRNum].available = false;
 				AVR[rt] = RS.bPRNum;
 				RS.bRequired = false;
+				
 				RS.immRequired = true;
 				RS.imm = imm;
 				if (rs == rt) RS.aReused = false;
@@ -205,7 +224,9 @@ public class MIPSdecode {
 				
 				RS.immRequired = true;
 				RS.imm = imm;
+				
 				if (rs == rt) RS.aReused = false;
+				
 				RS.instruction = instruction;
 				reservationStations[RSindex] = RS;
 				break;
@@ -216,10 +237,11 @@ public class MIPSdecode {
 				RS.bPRNum = nextAvailablePE();
 				physicalRegisters[RS.bPRNum].available = false;
 				AVR[rt] = RS.bPRNum;
-				
 				RS.bRequired = false;
+				
 				RS.immRequired = true;
 				RS.imm = imm;
+				
 				RS.instruction = instruction;
 				reservationStations[RSindex] = RS;
 				break;	
@@ -229,7 +251,7 @@ public class MIPSdecode {
 				RS.aPRNum = AVR[rs];
 				RS.aRequired = true;
 				if (physicalRegisters[AVR[rs]].valid == true){
-					RS.aData = physicalRegisters[AVR[rs]].data;
+					RS.aData = physicalRegisters[AVR[rs]].data;		//if valid use immediately
 					RS.aReady = true;
 				}
 				RS.bPRNum = nextAvailablePE();
@@ -246,7 +268,7 @@ public class MIPSdecode {
 				RS.opcode = opcode;
 				RS.aPRNum = AVR[rt];		//had these backwards....
 				RS.bPRNum = AVR[rs];
-				RS.bRequired = true;		//not sure on this
+				RS.bRequired = true;		//not sure on this, added to match output
 				RS.immRequired = true;
 				RS.imm = imm;
 				RS.instruction = instruction;
@@ -257,8 +279,6 @@ public class MIPSdecode {
 				break;
 		}
 		
-		//System.out.println(instruction);		
-		//System.out.println(reservationStations[RSindex].opcode);
 		return issue;
 	}
 	
