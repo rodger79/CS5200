@@ -30,23 +30,39 @@ public class MIPSdecode {
 	
 	private static String[] strRegisters = {"$0","$at","$v0","$v1","$a0","$a1","$a2","$a3","$t0","$t1","$t2","$t3"};
 	
+	private static int[] AVR = new int[12];
+	//private static int[] AVR = {0,1,2,3,4,5,6,7,8,9,10,11};
+	
 	//Define registers
 	private static long[] registers = new long[32];
 	
 	private static physicalRegister[] physicalRegisters = new physicalRegister[1024];
-	private static reservationStation[] reservationStations = new reservationStation[1024];
+	private static reservationStation[] reservationStations = new reservationStation[53];
 	
-	private static int[] AVR = new int[32];
+	
 	
 	public static void main(String[] args) throws IOException  {
 		
-		//initialize registers
+		//initialize physical registers
 		for (int i=0; i < physicalRegisters.length;i++ ){
 			physicalRegisters[i] = new physicalRegister();
 			physicalRegisters[i].available = true;
 			physicalRegisters[i].data = 0L;
 			physicalRegisters[i].valid = false;
 		}
+		
+		//initialize AVR registers
+		AVR[0] = 0;
+		physicalRegisters[0].available = false;
+		physicalRegisters[0].valid = true;
+		/*
+		for (int i=0; i < AVR.length;i++ ){
+			//AVR[i] = i;
+			physicalRegisters[AVR[i]].available = false;
+			physicalRegisters[AVR[i]].data = 0L;
+			physicalRegisters[AVR[i]].valid = false;
+		}*/
+		
 		for (int i=0; i < reservationStations.length;i++ ){
 			reservationStations[i] = new reservationStation();
 			reservationStations[i].available = true;
@@ -150,7 +166,7 @@ public class MIPSdecode {
 				RS.imm = imm;
 				RS.instruction = instruction;
 				reservationStations[RSindex] = RS;
-				issue = false;
+				//issue = false;
 				break;	
 			case 8: //addi
 				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + strRegisters[(int)rs] + ", " + imm);
@@ -160,15 +176,15 @@ public class MIPSdecode {
 					RS.aReady = true;
 				} else {
 					RS.aPRNum = AVR[rs];
-					if (physicalRegisters[AVR[rs]].valid == true){
-						RS.aData = physicalRegisters[AVR[rs]].data;
+					if (physicalRegisters[RS.aPRNum].valid == true){
+						RS.aData = physicalRegisters[RS.aPRNum].data;
 						RS.aReady = true;
 					}
 				}
 				RS.aRequired = true;
 				RS.bPRNum = nextAvailablePE();
+				physicalRegisters[RS.bPRNum].available = false;
 				AVR[rt] = RS.bPRNum;
-				physicalRegisters[nextAvailablePE()].available = false;
 				RS.bRequired = false;
 				RS.immRequired = true;
 				RS.imm = imm;
@@ -180,10 +196,13 @@ public class MIPSdecode {
 				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + strRegisters[(int)rs] + ", " + imm + "\t");
 				RS.opcode = opcode;
 				RS.aPRNum = AVR[rs];
+				RS.aRequired = true;
+				
 				RS.bPRNum = nextAvailablePE();
-				physicalRegisters[nextAvailablePE()].available = false;
+				physicalRegisters[RS.bPRNum].available = false;
 				AVR[rt] = RS.bPRNum;
 				RS.bRequired = false;
+				
 				RS.immRequired = true;
 				RS.imm = imm;
 				if (rs == rt) RS.aReused = false;
@@ -193,8 +212,11 @@ public class MIPSdecode {
 			case 15: //lui
 				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "\t");
 				RS.opcode = opcode;
+				
 				RS.bPRNum = nextAvailablePE();
-				physicalRegisters[nextAvailablePE()].available = false;
+				physicalRegisters[RS.bPRNum].available = false;
+				AVR[rt] = RS.bPRNum;
+				
 				RS.bRequired = false;
 				RS.immRequired = true;
 				RS.imm = imm;
@@ -211,7 +233,8 @@ public class MIPSdecode {
 					RS.aReady = true;
 				}
 				RS.bPRNum = nextAvailablePE();
-				physicalRegisters[nextAvailablePE()].available = false;
+				physicalRegisters[RS.bPRNum].available = false;
+				AVR[rt] = RS.bPRNum;
 				RS.bRequired = false;
 				RS.immRequired = true;
 				RS.imm = imm;
@@ -219,15 +242,22 @@ public class MIPSdecode {
 				reservationStations[RSindex] = RS;
 				break;	
 			case 43: //sw
-				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "(" + strRegisters[(int)rs] + ")");
-
+				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "(" + strRegisters[(int)rs] + ")\t");
+				RS.opcode = opcode;
+				RS.aPRNum = AVR[rt];		//had these backwards....
+				RS.bPRNum = AVR[rs];
+				RS.bRequired = true;		//not sure on this
+				RS.immRequired = true;
+				RS.imm = imm;
+				RS.instruction = instruction;
+				reservationStations[RSindex] = RS;
 				break;	
 			default:
 				//error condition
 				break;
 		}
 		
-		System.out.println(instruction);		
+		//System.out.println(instruction);		
 		//System.out.println(reservationStations[RSindex].opcode);
 		return issue;
 	}
@@ -287,26 +317,28 @@ public class MIPSdecode {
 	public static void printRS(String filename) throws UnsupportedEncodingException, FileNotFoundException, IOException{
 		
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"))) {
-			writer.write("instruction\t\t\topcode\tfct\taPRNum\taData\taReady\taRequired\taReused\tbPRNum\tbData" + 
-					"bReady\tbRequired\tbReused\tmemIndex\timmRequired\timm\n");
+			writer.write("instruction\t\t\topcode\tfct\t\taPRNum\taData\taReady\t\taRequired\taReused\t\tbPRNum\tbData" + 
+					"bReady\tbRequired\tbReused\t\tmemIndex\timmRequired\timm\n");
 
 			for (int i=0; i<reservationStations.length; i++){
 				if(reservationStations[i].available == false){
 		          writer.write(reservationStations[i].instruction + "\t" +
-		        		  reservationStations[i].opcode + "\t" +
-		        		  reservationStations[i].fct + "\t" +
-		        		  reservationStations[i].aPRNum + "\t" +
-		        		  reservationStations[i].aData + "\t" +
-		        		  reservationStations[i].aReady + "\t" +
-		        		  reservationStations[i].aRequired + "\t" +
-		        		  reservationStations[i].aReused + "\t" +
-		        		  reservationStations[i].bPRNum + "\t" +
-		        		  reservationStations[i].bData + "\t" +
-		        		  reservationStations[i].bReady + "\t" +
-		        		  reservationStations[i].bRequired + "\t" +
-		        		  reservationStations[i].bReused + "\t" +
-		        		  reservationStations[i].immRequired+ "\t" +
+		        		  reservationStations[i].opcode + "\t" +"\t" +
+		        		  reservationStations[i].fct + "\t" +"\t" +
+		        		  reservationStations[i].aPRNum + "\t" +"\t" +
+		        		  reservationStations[i].aData + "\t" +"\t" +
+		        		  reservationStations[i].aReady + "\t" +"\t" +
+		        		  reservationStations[i].aRequired + "\t" +"\t" +
+		        		  reservationStations[i].aReused + "\t" +"\t" +
+		        		  reservationStations[i].bPRNum + "\t" +"\t" +
+		        		  reservationStations[i].bData + "\t" +"\t\t" +
+		        		  reservationStations[i].bReady + "\t" +"\t" +
+		        		  reservationStations[i].bRequired + "\t" +"\t" +
+		        		  reservationStations[i].bReused + "\t" +"\t" +
+		        		  reservationStations[i].immRequired+ "\t" +"\t" +
 		        		  reservationStations[i].imm + "\t" + "\n");
+		          if (reservationStations[i].opcode == 4)
+		        	  writer.write("\n\nIssue\n");
 
 
 				}
