@@ -6,13 +6,9 @@
  */
 
 import java.io.*;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 
 public class MIPSdecode {
@@ -26,9 +22,12 @@ public class MIPSdecode {
 	//Issue
 	private static long programCounter = 0;
 	//Exec
-	private static long execPC = 0;
+	//private static long execPC = 0;
 	//cycle counter
 	private static int cycle = 0;
+	
+	private static boolean programCont = true;
+	
 	private static String[] strInstructions = { "","","j","","beq","","","","addi","","","","","ori","","lui",
 												"","","","","","","","","","","","","","","","","","","","lw",
 												"","","","","","","","sw"};
@@ -42,7 +41,8 @@ public class MIPSdecode {
 	private static physicalRegister[] physicalRegisters = new physicalRegister[1024];
 	
 	//create array of reservation stations
-	private static reservationStation[] reservationStations = new reservationStation[53];
+	//private static reservationStation[] reservationStations = new reservationStation[53];
+	private static ArrayList<reservationStation> reservationStations =new ArrayList<reservationStation>();  
 	
 	
 	
@@ -65,11 +65,6 @@ public class MIPSdecode {
 			physicalRegisters[AVR[i]].data = 0xffffffff;;
 		}
 		
-		//Initialialize Registration Station Array
-		for (int i=0; i < reservationStations.length;i++ ){
-			reservationStations[i] = new reservationStation();
-			reservationStations[i].available = true;
-		}
 
 		//read Instructions file		
 		readInstructions("MachineInstructions.txt");
@@ -83,10 +78,12 @@ public class MIPSdecode {
 		//Will insert into exec loop for program4
 		boolean issue = true;
 		boolean exec = true;
-		boolean programCont = true;
+		
 		
 		while (programCont){
+			System.out.println("issue");
 			while (issue){
+				
 				//use program counter to get next instruction
 				long instruction = instructionMemory.load(programCounter);
 				
@@ -103,63 +100,105 @@ public class MIPSdecode {
 	
 				issue = issueInstruction(opcode,jumpLoc,(int)rs,(int)rt,imm, fct);
 				
-				//end loop if out of reservation stations
-				if ((reservationStations.length-1) == nextAvailableRS()) issue = false;
-	
+				exec = true;
 			} 
+			printRS("Reservations.txt");
+			System.out.println("exec instructions");
 			while (exec){
-				exec = false;
+				
+				//update any available memory writes
+				memoryUpdate();
+				issue = true;
+				
 				//go through reservation stations to see if any can execute
-				for (int i = 0; i < reservationStations.length; i++){
+
+				//for (reservationStation RE : reservationStations){
+				for (int i = 0; i < reservationStations.size(); i++){
 					reservationStation RE = new reservationStation();
-					RE = reservationStations[i];
-					
-					if ((RE.aReady || (RE.aRequired == false)) && (RE.bReady || (RE.bRequired == false))){
-						exex
+					RE = reservationStations.get(i);
+					exec = false;
+					if ((RE.aReady || !RE.aRequired) && (RE.bReady || !RE.bRequired)){
+						cycle++;
+						exec = executeInstruction(RE);
+						System.out.println(RE.instruction);
+						reservationStations.remove(i);
 					}
-					
+
 				}
 				
-				
-				exec = false;
+				//exec = false; //remove to test
 			}
-			programCont = false; //remove and use for syscall
+			//programCont = false; //remove and use for syscall
 		} 
 		
-		
-	/*
-	 * no longer needed, kept for troubleshooting
-	 	//Instructions to implement program2
-		int syscall = 0;
-		while (syscall == 0){
-			
-			//use program counter to get next instruction
-			long instruction = instructionMemory.load(programCounter);
-			
-			//increment program counter
-			programCounter = programCounter + 4;
-			
-			//decode instruction
-			int opcode = (int)(instruction >> 26);
-			long jumpLoc = (instruction &  0x03ffffff) << 2;
-			long rs = (instruction >> 21 ) &  0x1f;
-			long rt = (instruction >> 16 ) &  0x1f;
-			int imm = (int) (instruction & 0xffff);
-			long fct = instruction & 0x1f;
-
-			syscall = decodeLong(opcode,jumpLoc,rs,rt,imm, fct);
-		
-			
-		}*/
-		printRS("Reservations.txt");
 		dataMemory.print("DMDumpAfter.txt");
+	}
+	public static void memoryUpdate(){
+		//stub
+	}
+	//execute instructions
+	public static boolean executeInstruction(reservationStation RE){
+		boolean retval = true;
+		switch (RE.opcode){
+			case 0: //syscall
+				retval = false;
+				programCont = false;
+				break;
+			case 2: //jump
+				//shouldn't happen
+				break;	
+			case 4: //beq
+				if (RE.aData == RE.bData){
+					//update issue program counter
+					programCounter += RE.fct*4;
+				}else
+					//do nothing
+				
+				break;	
+			case 8: //addi
+				physicalRegisters[RE.aPRNum].data = physicalRegisters[RE.bPRNum].data + RE.imm;
+				updateReady(RE.aPRNum);
+				break;	
+			case 13: //ori
+				physicalRegisters[RE.aPRNum].data = physicalRegisters[RE.bPRNum].data | RE.imm;
+				updateReady(RE.aPRNum);
+				break;
+			case 15: //lui
+				physicalRegisters[RE.aPRNum].data = RE.imm << 16;
+				updateReady(RE.aPRNum);
+				break;	
+			case 35: //lw
+				physicalRegisters[RE.aPRNum].data = dataMemory.load(physicalRegisters[RE.bPRNum].data);
+				updateReady(RE.aPRNum);
+				break;	
+			case 43: //sw
+				dataMemory.store(physicalRegisters[RE.aPRNum].data , physicalRegisters[RE.bPRNum].data);
+				break;	
+			default:
+				//error condition
+				break;
+		}
+		
+		return retval;
+	}
+	public static void updateReady(int physicalRegisterIndex){
+		
+		for (reservationStation RE : reservationStations){
+			if (RE.aPRNum == physicalRegisterIndex){
+				RE.aReady = true;
+			} else if (RE.bPRNum == physicalRegisterIndex){
+				RE.bReady = true;
+			} else {/*do nothing*/}
+			
+		}
+		
 	}
 	//issue instructions
 	public static boolean issueInstruction(int opcode, long jumpLoc, int rs, int rt, int imm, long fct){
 		//Init variables
 		boolean issue = true;
 		String instruction = "invalid inst";
-		int RSindex = nextAvailableRS();
+		
 		reservationStation RS = new reservationStation();
 		RS.available = false;
 		
@@ -176,15 +215,16 @@ public class MIPSdecode {
 					RS.aRequired = true;
 					
 					RS.instruction = instruction;
-					reservationStations[RSindex] = RS;
+					reservationStations.add(RS);
 				} else
 					System.out.println("unrecognized instruction");
 					//error condition
 				break;
 			case 2: //jump
 				//no need to issue 
-				instruction = (strInstructions[opcode] + "\t" + String.format("0x%08X", jumpLoc) );
-				programCounter = (programCounter & 0xf0000000) | jumpLoc;
+				//instruction = (strInstructions[opcode] + "\t" + String.format("0x%08X", jumpLoc) );
+				//programCounter = (programCounter & 0xf0000000) | jumpLoc;
+				programCounter = jumpLoc;
 				break;	
 				
 			case 4: //beq
@@ -207,7 +247,7 @@ public class MIPSdecode {
 				RS.immRequired = true;
 				RS.imm = imm;
 				RS.instruction = instruction;
-				reservationStations[RSindex] = RS;
+				reservationStations.add(RS);
 				issue = false;  				//flag to hold issuing on branch
 				break;	
 			case 8: //addi
@@ -234,7 +274,7 @@ public class MIPSdecode {
 				RS.imm = imm;
 				if (rs == rt) RS.aReused = false;
 				RS.instruction = instruction;
-				reservationStations[RSindex] = RS;
+				reservationStations.add(RS);
 				break;	
 			case 13: //ori
 				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + strRegisters[(int)rs] + ", " + imm );
@@ -252,7 +292,7 @@ public class MIPSdecode {
 				if (rs == rt) RS.aReused = false;
 				
 				RS.instruction = instruction;
-				reservationStations[RSindex] = RS;
+				reservationStations.add(RS);
 				break;
 			case 15: //lui
 				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm );
@@ -266,7 +306,7 @@ public class MIPSdecode {
 				RS.imm = imm;
 				
 				RS.instruction = instruction;
-				reservationStations[RSindex] = RS;
+				reservationStations.add(RS);
 				break;	
 			case 35: //lw
 				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "(" + strRegisters[(int)rs] + ")");
@@ -274,11 +314,11 @@ public class MIPSdecode {
 				RS.aPRNum = AVR[rs];
 				RS.aRequired = true;
 				
-				/* In notes but not example code
-				 * if (physicalRegisters[AVR[rs]].valid == true){
+				/* In notes but not example code */
+				if (physicalRegisters[AVR[rs]].valid == true){
 					RS.aData = physicalRegisters[AVR[rs]].data;		//if valid use immediately
 					RS.aReady = true;
-				}*/ 
+				} 
 				
 				RS.bPRNum = nextAvailablePE();
 				AVR[rt] = RS.bPRNum;
@@ -286,7 +326,7 @@ public class MIPSdecode {
 				RS.immRequired = true;
 				RS.imm = imm;
 				RS.instruction = instruction;
-				reservationStations[RSindex] = RS;
+				reservationStations.add(RS);
 				break;	
 			case 43: //sw
 				instruction = (strInstructions[opcode] + "\t" + strRegisters[(int)rt] + ", " + imm + "(" + strRegisters[(int)rs] + ")");
@@ -298,7 +338,7 @@ public class MIPSdecode {
 				RS.immRequired = true;
 				RS.imm = imm;
 				RS.instruction = instruction;
-				reservationStations[RSindex] = RS;
+				reservationStations.add(RS);
 				break;	
 			default:
 				//error condition
@@ -362,29 +402,31 @@ public class MIPSdecode {
 	
 	public static void printRS(String filename) throws UnsupportedEncodingException, FileNotFoundException, IOException{
 		
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"))) {
-			writer.write("instruction\t\topcode\tfct\taPRNum\taData\taReady\taRequired\taReused\tbPRNum\tbData" + 
+		try (FileWriter fw = new FileWriter(filename, true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw)){
+	//	try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"))) {
+			out.print("instruction\t\topcode\tfct\taPRNum\taData\taReady\taRequired\taReused\tbPRNum\tbData" + 
 					"bReady\tbRequired\tbReused\t\tmemIndex\timmRequired\timm\n");
 
-			for (int i=0; i<reservationStations.length; i++){
-				if(reservationStations[i].available == false){
-		          writer.write(reservationStations[i].instruction + "\t" +
-		        		  reservationStations[i].opcode + "\t" +
-		        		  reservationStations[i].fct + "\t" +
-		        		  reservationStations[i].aPRNum + "\t" +
-		        		  reservationStations[i].aData + "\t" +
-		        		  reservationStations[i].aReady + "\t" +
-		        		  reservationStations[i].aRequired + "\t\t" +
-		        		  reservationStations[i].aReused + "\t" +
-		        		  reservationStations[i].bPRNum + "\t" +
-		        		  reservationStations[i].bData + "\t\t" +
-		        		  reservationStations[i].bReady + "\t\t" +
-		        		  reservationStations[i].bRequired + "\t\t" +
-		        		  reservationStations[i].bReused + "\t\t" +
-		        		  reservationStations[i].immRequired+ "\t\t" +
-		        		  reservationStations[i].imm + "\t" + "\n");
-		          if (reservationStations[i].opcode == 4)
-		        	  writer.write("\n\nIssue\n");
+			for (reservationStation RE : reservationStations){
+				if(RE.available == false){
+		          out.print(RE.instruction + "\t" +
+		        		  RE.opcode + "\t" +
+		        		  RE.fct + "\t" +
+		        		  RE.aPRNum + "\t" +
+		        		  RE.aData + "\t" +
+		        		  RE.aReady + "\t" +
+		        		  RE.aRequired + "\t\t" +
+		        		  RE.aReused + "\t" +
+		        		  RE.bPRNum + "\t" +
+		        		  RE.bData + "\t\t" +
+		        		  RE.bReady + "\t\t" +
+		        		  RE.bRequired + "\t\t" +
+		        		  RE.bReused + "\t\t" +
+		        		  RE.immRequired+ "\t\t" +
+		        		  RE.imm + "\t" + "\n");
+		        //  if (reservationStations[i].opcode == 4) writer.write("\n\nIssue\n");
 
 
 				}
@@ -403,6 +445,7 @@ public class MIPSdecode {
 		physicalRegisters[retval].available = false;
 		return retval;
 	}	
+	/* not needed
 	//find next available registration station
 	public static int nextAvailableRS(){
 		int retval = -1;
@@ -414,6 +457,7 @@ public class MIPSdecode {
 		}
 		return retval;
 	}
+	*/
 	//read in the text file to instruction array
 	public static void readInstructions(String filename) throws IOException{
 
