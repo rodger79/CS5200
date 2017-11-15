@@ -80,8 +80,10 @@ public class MIPSdecode {
 		boolean exec = true;
 		
 		
+		int programLoopCounter = 0;
 		while (programCont){
 			System.out.println("issue");
+			programLoopCounter++;
 			while (issue){
 				
 				//use program counter to get next instruction
@@ -108,27 +110,40 @@ public class MIPSdecode {
 				
 				//update any available memory writes
 				memoryUpdate();
-				issue = true;
+				//issue = true;
 				
-				//go through reservation stations to see if any can execute
-
+				//go through reservation stations to  if any can execute
+				int numReady = 0;
 				//for (reservationStation RE : reservationStations){
 				for (int i = 0; i < reservationStations.size(); i++){
 					reservationStation RE = new reservationStation();
 					RE = reservationStations.get(i);
-					exec = false;
+					//exec = false;  		//error here? issuing too soon?
+					System.out.println("NEXT: " + RE.instruction);
+					System.out.println("REsSize: " + reservationStations.size());
 					if ((RE.aReady || !RE.aRequired) && (RE.bReady || !RE.bRequired)){
+						numReady++;
 						cycle++;
-						exec = executeInstruction(RE);
-						System.out.println(RE.instruction);
+						exec = executeInstruction(i);
+						System.out.println("EXEC: " + RE.instruction + " cycle: " + cycle);
 						reservationStations.remove(i);
 					}
-
+				}
+				if (numReady == 0){
+					//if even 1 instruction executed, look again for more ready instructions
+					exec = false;
+					issue = true;
 				}
 				
 				//exec = false; //remove to test
 			}
 			//programCont = false; //remove and use for syscall
+			//prevent infinite loop
+			if (programLoopCounter == 5){
+			//	issue = false;
+			//	exec = false;
+			//	programCont = false;
+			}
 		} 
 		
 		dataMemory.print("DMDumpAfter.txt");
@@ -137,8 +152,12 @@ public class MIPSdecode {
 		//stub
 	}
 	//execute instructions
-	public static boolean executeInstruction(reservationStation RE){
+	//need to change to update actual reservation station entry
+	public static boolean executeInstruction(int index){
 		boolean retval = true;
+		reservationStation RE = new reservationStation();
+		RE = reservationStations.get(index);
+		
 		switch (RE.opcode){
 			case 0: //syscall
 				retval = false;
@@ -156,23 +175,24 @@ public class MIPSdecode {
 				
 				break;	
 			case 8: //addi
-				physicalRegisters[RE.aPRNum].data = physicalRegisters[RE.bPRNum].data + RE.imm;
-				updateReady(RE.aPRNum);
+				physicalRegisters[RE.bPRNum].data = physicalRegisters[RE.aPRNum].data + RE.imm;
+				//RE.aReady
+				updateReady(RE.bPRNum);
 				break;	
 			case 13: //ori
-				physicalRegisters[RE.aPRNum].data = physicalRegisters[RE.bPRNum].data | RE.imm;
-				updateReady(RE.aPRNum);
+				physicalRegisters[RE.bPRNum].data = physicalRegisters[RE.aPRNum].data | RE.imm;
+				updateReady(RE.bPRNum);
 				break;
 			case 15: //lui
-				physicalRegisters[RE.aPRNum].data = RE.imm << 16;
-				updateReady(RE.aPRNum);
+				physicalRegisters[RE.bPRNum].data = RE.imm << 16;
+				updateReady(RE.bPRNum);
 				break;	
 			case 35: //lw
-				physicalRegisters[RE.aPRNum].data = dataMemory.load(physicalRegisters[RE.bPRNum].data);
-				updateReady(RE.aPRNum);
+				physicalRegisters[RE.bPRNum].data = dataMemory.load(physicalRegisters[RE.aPRNum].data);
+				updateReady(RE.bPRNum);
 				break;	
 			case 43: //sw
-				dataMemory.store(physicalRegisters[RE.aPRNum].data , physicalRegisters[RE.bPRNum].data);
+				dataMemory.store(physicalRegisters[RE.bPRNum].data , physicalRegisters[RE.aPRNum].data);
 				break;	
 			default:
 				//error condition
@@ -183,14 +203,27 @@ public class MIPSdecode {
 	}
 	public static void updateReady(int physicalRegisterIndex){
 		
-		for (reservationStation RE : reservationStations){
+		for (int i = 0; i < reservationStations.size(); i++){
+			if (reservationStations.get(i).aPRNum == physicalRegisterIndex){
+				//System.out.println("update PRA");
+				reservationStations.get(i).aReady = true;
+			} else if (reservationStations.get(i).bPRNum == physicalRegisterIndex){
+				//System.out.println("update PRB");
+				reservationStations.get(i).bReady = true;
+			} else {//do nothing
+				}
+		}
+		/*for (reservationStation RE : reservationStations){
 			if (RE.aPRNum == physicalRegisterIndex){
+				System.out.println("update PRA");
 				RE.aReady = true;
 			} else if (RE.bPRNum == physicalRegisterIndex){
+				System.out.println("update PRB");
 				RE.bReady = true;
-			} else {/*do nothing*/}
+			} else {//do nothing
+				}
 			
-		}
+		}*/
 		
 	}
 	//issue instructions
@@ -264,6 +297,8 @@ public class MIPSdecode {
 						RS.aReady = true;
 					}
 				}
+				
+				
 				RS.aRequired = true;
 				
 				RS.bPRNum = nextAvailablePE();
@@ -272,7 +307,10 @@ public class MIPSdecode {
 				
 				RS.immRequired = true;
 				RS.imm = imm;
-				if (rs == rt) RS.aReused = false;
+				if (rs == rt) {
+					RS.aReused = false;
+					RS.aReady = true;
+				}
 				RS.instruction = instruction;
 				reservationStations.add(RS);
 				break;	
@@ -442,7 +480,11 @@ public class MIPSdecode {
 				break;
 			}
 		}
-		physicalRegisters[retval].available = false;
+		if (retval == -1){
+			programCont = false;
+		} else {
+			physicalRegisters[retval].available = false;
+		}
 		return retval;
 	}	
 	/* not needed
