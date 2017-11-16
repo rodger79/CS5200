@@ -18,7 +18,7 @@ class MIPSmemory {
 	//use linkedhashmap instead of hashtable to preserve order
 	private LinkedHashMap<Long,Long> memory =new LinkedHashMap<Long,Long>();  
 	private int memSize = 0;
-	//private long programCounter = 0;
+
 
 	public MIPSmemory(int type, int size) {
 		if (type == 1){
