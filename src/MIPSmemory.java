@@ -43,12 +43,18 @@ class MIPSmemory {
 		}
 		memory.put(id,value);
 	}	
+	//didn't change this for program 4, instead the main program handles the delay by copying 
+	//  the returned value into a list with the corresponding execution cycle that it becomes
+	//  available
 	public long load (long id){
 		if (memory.containsKey(id)) 
 			return memory.get(id);
 		else 
+			System.out.println("memError: " + Long.toHexString(id) + " not in memory");
 			return -1; //error
 	}
+	
+	//print to file
 	public void print(String filename){
 
 		Set<Long> keys = memory.keySet();
@@ -56,7 +62,6 @@ class MIPSmemory {
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "utf-8"))) {
 			
 		    for(long key: keys){
-		         // System.out.println("0x"+String.format("%08X", key) + "\t 0x" + String.format("%08X", memory.get(key)));
 		          writer.write("0x"+String.format("%08X", key) + "\t 0x" + String.format("%08X", memory.get(key))+"\n");
 		    }
 				
@@ -68,6 +73,13 @@ class MIPSmemory {
 			e.printStackTrace();
 		}
 
+	}
+	//debugging purposes, print to console
+	public void printConsole() {
+		Set<Long> keys = memory.keySet();
+	    for(long key: keys){
+	         System.out.println("0x"+String.format("%08X", key) + "\t 0x" + String.format("%08X", memory.get(key)));
+	    }
 	}
 	public int count(){
 		return memory.size();

@@ -82,9 +82,14 @@ public class MIPSdecode {
 		boolean issue = true;
 		boolean exec = true;
 		
+		//debugging
+		printToFile("DebugOutput.txt", "RE.memIndex RE.instruction RE.aPRNum RE.aData"
+				+ " RE.bPRNum RE.bData RE.imm\n");
+		
 		
 		int programLoopCounter = 0;
 		while (programCont){
+			dataMemory.printConsole();
 			System.out.println("issue");
 			programLoopCounter++;
 			while (issue){
@@ -107,47 +112,46 @@ public class MIPSdecode {
 				
 				exec = true;
 			} 
-			printRS("Reservations.txt");
+			//printRS("Reservations.txt");
 			System.out.println("exec instructions");
 			while (exec){
 				
-				//update any available memory writes
-				
-				memoryUpdate();
-				
-				//issue = true;
-				
-				//go through reservation stations to  if any can execute
+
+				printRS("Reservations.txt");
+				//go through reservation stations to see if any can execute
 				int numReady = 0;
-				//for (reservationStation RE : reservationStations){
+
 				for (int i = 0; i < reservationStations.size(); i++){
 					reservationStation RE = new reservationStation();
 					RE = reservationStations.get(i);
-					//exec = false;  		//error here? issuing too soon?
-					//System.out.println("NEXT: " + RE.instruction);
-					//System.out.println("REsSize: " + reservationStations.size());
-					System.out.println("EXEC: " + RE.instruction + " " + RE.aReady + " " + RE.bReady + " cycle: " + cycle );
-					if ((RE.aReady || !RE.aRequired) && (RE.bReady || !RE.bRequired)){
+					//update any available memory writes
+					memoryUpdate();
+					
+					if ((RE.aReady || !RE.aRequired) && (RE.bReady || !RE.bRequired) && RE.available == true){
 						numReady++;
 						cycle++;
-						//System.out.println("EXEC: " + RE.instruction + " cycle: " + cycle);
+						System.out.println("EXEC: " + RE.instruction + " cycle: " + cycle);
 						exec = executeInstruction(i);
-						
-						reservationStations.remove(i);
-						i--;
+						String executedRE = RE.memIndex + " " + RE.instruction + "\t\t" +RE.aPRNum + "\t" +Long.toHexString(RE.aData) +"\t" +
+								RE.bPRNum + "\t" +Long.toHexString(RE.bData) +"\t" +RE.imm;
+						printToFile("DebugOutput.txt", executedRE);
+						//printRS("Reservations.txt");
+						//reservationStations.remove(i);
+						//i--;
+						reservationStations.get(i).available = false;
 					}
+
 				}
 				if (numReady == 0){
 					//if even 1 instruction executed, look again for more ready instructions
 					exec = false;
 					issue = true;
 				}
-				
-				//exec = false; //remove to test
+
 			}
-			//programCont = false; //remove and use for syscall
+
 			//prevent infinite loop
-			if (programLoopCounter == 100){
+			if (programLoopCounter == 5){
 				issue = false;
 				exec = false;
 				programCont = false;
@@ -161,8 +165,6 @@ public class MIPSdecode {
 	//need to change to update actual reservation station entry
 	public static boolean executeInstruction(int index){
 		boolean retval = true;
-		//reservationStation RE = new reservationStation();
-		//RE = reservationStations.get(index);
 		
 		switch (reservationStations.get(index).opcode){
 			case 0: //syscall
@@ -173,45 +175,48 @@ public class MIPSdecode {
 				//shouldn't happen
 				break;	
 			case 4: //beq
-				System.out.println("PC: " + Long.toHexString(programCounter));
 				if (reservationStations.get(index).aData == reservationStations.get(index).bData){
 					//update issue program counter
 					programCounter += reservationStations.get(index).fct*4; 
-					System.out.println("PC after branch: " + Long.toHexString(programCounter));
 				}else
 					//do nothing
-				
 				break;	
 			case 8: //addi
-				//physicalRegisters[RE.bPRNum].data = physicalRegisters[RE.aPRNum].data + RE.imm;
 				physicalRegisters[reservationStations.get(index).bPRNum].data = reservationStations.get(index).aData + reservationStations.get(index).imm;
-				updateReady(reservationStations.get(index).bPRNum);
+				updateReady(reservationStations.get(index).bPRNum, index);
 				break;	
 			case 13: //ori
-				//physicalRegisters[RE.bPRNum].data = physicalRegisters[RE.aPRNum].data | RE.imm;
 				physicalRegisters[reservationStations.get(index).bPRNum].data = reservationStations.get(index).aData | reservationStations.get(index).imm;
-				updateReady(reservationStations.get(index).bPRNum);
+				updateReady(reservationStations.get(index).bPRNum, index);
 				break;
 			case 15: //lui
-				//physicalRegisters[RE.bPRNum].data = RE.imm << 16;
 				physicalRegisters[reservationStations.get(index).bPRNum].data = reservationStations.get(index).imm << 16;
-				updateReady(reservationStations.get(index).bPRNum);
+				updateReady(reservationStations.get(index).bPRNum, index);
 				break;	
 			case 35: //lw
-				//physicalRegisters[RE.bPRNum].data = dataMemory.load(physicalRegisters[RE.aPRNum].data);
 				//don't actually load it just call the load, the actual load will be handled after 3 cycles
-				long tempdata = dataMemory.load(reservationStations.get(index).aData);
-				delayedMemItem tempItem = new delayedMemItem();
-				tempItem.cycleAvailable = cycle + 3;
-				tempItem.data = tempdata;
-				tempItem.registerID = reservationStations.get(index).bPRNum;
-				 memDelayList.add(tempItem);
+				long tempdata = dataMemory.load(reservationStations.get(index).aData + reservationStations.get(index).imm);
+				System.out.println("tempdata: " + tempdata);
+				
+				if (tempdata == -1) {
+					retval = false;
+					programCont = false;
+					System.out.println("errorload: bData: " + reservationStations.get(index).bData + " imm: " + reservationStations.get(index).imm );
+				} else {
+					delayedMemItem tempItem = new delayedMemItem();
+					tempItem.cycleAvailable = cycle + 3;
+					tempItem.data = tempdata;
+					tempItem.registerID = reservationStations.get(index).aPRNum;
+					memDelayList.add(tempItem);
+				}
 				//physicalRegisters[reservationStations.get(index).bPRNum].data = dataMemory.load(reservationStations.get(index).aData);
 				//updateReady(reservationStations.get(index).bPRNum);
 				break;	
 			case 43: //sw
 				//need to fix store
-				dataMemory.store(reservationStations.get(index).aData , reservationStations.get(index).aData);
+				long temp = reservationStations.get(index).bData + reservationStations.get(index).imm ;
+				System.out.println("sw debug, id: " + Long.toHexString(temp) + "val: " +  reservationStations.get(index).aData );
+				dataMemory.store(reservationStations.get(index).bData + reservationStations.get(index).imm  , reservationStations.get(index).aData);
 				
 				break;	
 			default:
@@ -227,25 +232,39 @@ public class MIPSdecode {
 		for (delayedMemItem mi : memDelayList){
 			if (mi.cycleAvailable == cycle){
 				physicalRegisters[mi.registerID].data = mi.data;
-				updateReady(mi.registerID);
-				
+				updateReady(mi.registerID, -1);
+				System.out.println("data available, memItemID: " + mi.registerID + " mi.data: " +  mi.data+ " mi.cycle: " +  mi.cycleAvailable);
 			}
 		}
 		
 	}
-	public static void updateReady(int physicalRegisterIndex){
+	public static void updateReady(int physicalRegisterIndex, int currentRE){
 		
 		for (int i = 0; i < reservationStations.size(); i++){
-			if (reservationStations.get(i).aPRNum == physicalRegisterIndex){
-				//System.out.println("update PRA" + reservationStations.get(i).aPRNum );
-				reservationStations.get(i).aReady = true;
-				reservationStations.get(i).aData = physicalRegisters[physicalRegisterIndex].data;
-			} else if (reservationStations.get(i).bPRNum == physicalRegisterIndex){
-				//System.out.println("update PRB"+ reservationStations.get(i).bPRNum );
-				reservationStations.get(i).bReady = true;
-				reservationStations.get(i).bData = physicalRegisters[physicalRegisterIndex].data;
-			} else {//do nothing
+		/*	if (i == currentRE) {
+				//don't update the reservation station you just executed
+			}else {
+				if (reservationStations.get(i).aPRNum == physicalRegisterIndex){
+					//System.out.println("updateRS a: " + reservationStations.get(i).instruction );
+					reservationStations.get(i).aReady = true;
+					reservationStations.get(i).aData = physicalRegisters[physicalRegisterIndex].data;
+				} else if (reservationStations.get(i).bPRNum == physicalRegisterIndex){
+					//System.out.println("updateRS b: " + reservationStations.get(i).instruction );
+					reservationStations.get(i).bReady = true;
+					reservationStations.get(i).bData = physicalRegisters[physicalRegisterIndex].data;
+				} else {//do nothing
 				}
+			}*/
+		if (reservationStations.get(i).aPRNum == physicalRegisterIndex){
+			//System.out.println("updateRS a: " + reservationStations.get(i).instruction );
+			reservationStations.get(i).aReady = true;
+			reservationStations.get(i).aData = physicalRegisters[physicalRegisterIndex].data;
+		} else if (reservationStations.get(i).bPRNum == physicalRegisterIndex){
+			//System.out.println("updateRS b: " + reservationStations.get(i).instruction );
+			reservationStations.get(i).bReady = true;
+			reservationStations.get(i).bData = physicalRegisters[physicalRegisterIndex].data;
+		} else {//do nothing
+		}
 		}
 		
 	}
@@ -256,8 +275,8 @@ public class MIPSdecode {
 		String instruction = "invalid inst";
 		
 		reservationStation RS = new reservationStation();
-		RS.available = false;
-		
+		RS.available = true;
+		RS.memIndex = cycle;
 		
 		switch (opcode) {
 			case 0: //syscall
@@ -299,8 +318,8 @@ public class MIPSdecode {
 					RS.bData = physicalRegisters[RS.bPRNum].data;
 					RS.bReady = true;
 				}
-				RS.bReady = true;
-				RS.aReady = true;
+				//RS.bReady = true;
+				//RS.aReady = true;
 				RS.immRequired = true;
 				RS.imm = imm;
 				RS.instruction = instruction;
@@ -472,8 +491,9 @@ public class MIPSdecode {
 					"bReady\tbRequired\tbReused\timmRequired\timm\n");
 
 			for (reservationStation RE : reservationStations){
-				if(RE.available == false){
-		          out.print(RE.instruction + "\t" +
+				if(RE.available == (false || true)){
+		          out.print(RE.memIndex + "\t" +
+		        		  RE.instruction + "\t" +
 		        		  RE.opcode + "\t" +
 		        		  RE.fct + "\t" +
 		        		  RE.aPRNum + "\t" +
@@ -511,7 +531,7 @@ public class MIPSdecode {
 		}
 		return retval;
 	}	
-	/* not needed
+	/* not needed - switched to list from array
 	//find next available registration station
 	public static int nextAvailableRS(){
 		int retval = -1;
@@ -555,6 +575,14 @@ public class MIPSdecode {
 	   }
 
 	}
-	
+	public static void printToFile(String filename, String input) throws UnsupportedEncodingException, FileNotFoundException, IOException{
+		
+		try (FileWriter fw = new FileWriter(filename, true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw)){
+			out.print(input + "\n");
+
+		    }
+	}
 	
 }

@@ -13,7 +13,7 @@ public class reservationStation {
 	public boolean bReady;
 	public boolean bRequired;
 	public boolean bReused;
-	public long memIndex;
+	public int memIndex;
 	public int imm;
 	public boolean immRequired;
 	public boolean hasExecuted;
