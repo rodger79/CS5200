@@ -1,4 +1,9 @@
-
+/****************************************************************
+ * Rodger Byrd
+ * Dynamic Scheduling Program, part 4
+ * 11/7/2017
+ * reservation station definition
+ */
 public class reservationStation {
 	public int opcode;
 	public long fct;

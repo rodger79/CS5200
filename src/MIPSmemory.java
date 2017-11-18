@@ -1,8 +1,8 @@
 /****************************************************************
  * Rodger Byrd
- * Program 1
+ * Program 4
  * 9/24/2017
- * MIPS instruction decoding and implementation
+ * MIPS memory implementation
  */
 
 import java.io.BufferedWriter;
@@ -19,7 +19,7 @@ class MIPSmemory {
 	private LinkedHashMap<Long,Long> memory =new LinkedHashMap<Long,Long>();  
 	private int memSize = 0;
 
-
+	//initialize, should probably pass in initial data address as a parameter
 	public MIPSmemory(int type, int size) {
 		if (type == 1){
 			//initial data address = "0x10010000"
@@ -33,7 +33,7 @@ class MIPSmemory {
 			//instruction memory, don't initialize
 		}
 	}
-
+	//store to memory
 	public void store (long id, long value){
 		if(memory.containsKey(id)){
 			//id already exists don't increase size
@@ -87,13 +87,4 @@ class MIPSmemory {
 	public int size(){
 		return memSize;
 	}
-	//public void setPC(long value){
-	//	programCounter = value;
-	//}
-	//public long instructionPC(){
-	//	return programCounter;
-	//}
-	//public void incPC(){
-	//	programCounter = programCounter + 4;
-	//}
 }
