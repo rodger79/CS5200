@@ -72,7 +72,7 @@ public class MIPSdecode {
 		
 
 		//read Instructions file		
-		readInstructions("MachineInstructions.txt");
+		readInstructions("MachineInstructions2.txt");
 		
 		//check memory
 		instructionMemory.print("IMDump.txt");
@@ -85,7 +85,7 @@ public class MIPSdecode {
 		boolean exec = true;
 		
 		//debugging
-		printToFile("DebugOutput.txt", "RE.memIndex RE.instruction RE.aPRNum RE.aData"
+		printToFile("DebugOutput2.txt", "RE.memIndex RE.instruction RE.aPRNum RE.aData"
 				+ " RE.bPRNum RE.bData RE.imm\n");
 		
 		
@@ -122,8 +122,7 @@ public class MIPSdecode {
 				
 
 				printRS("Reservations.txt");
-				//go through reservation stations to see if any can execute
-				int numReady = 0;
+
 
 				for (int i = 0; i < reservationStations.size(); i++){
 					reservationStation RE = new reservationStation();
@@ -135,10 +134,10 @@ public class MIPSdecode {
 						//if (memDelayList.get(j).available == true)
 						//	System.out.println(memDelayList.get(j).registerID + " " + memDelayList.get(j).data + " " + memDelayList.get(j).cycleAvailable + " " + cycle);
 					//}
-					
+					cycle++;
 					if ((RE.aReady || !RE.aRequired) && (RE.bReady || !RE.bRequired) && RE.available == true){
-						numReady++;
-						cycle++;
+						
+
 						//System.out.println("EXEC: " + RE.instruction + " cycle: " + cycle);
 						exec = executeInstruction(i);
 						String executedRE = RE.memIndex + " " + RE.instruction + "\t\t" +RE.aPRNum + "\t" + RE.aData /*Long.toHexString(RE.aData)*/ +"\t" +
@@ -151,6 +150,14 @@ public class MIPSdecode {
 					}
 
 				}
+				//go through reservation stations to see if any can execute
+				int numReady = 0;
+				for (int i = 0; i < reservationStations.size(); i++) {
+					if (reservationStations.get(i).available == true) {
+						numReady++;
+					}
+				}
+
 				if (numReady == 0){
 					//stop exec, start issuing
 					exec = false;
@@ -263,6 +270,7 @@ public class MIPSdecode {
 					}
 				}
 				else {
+					//immediate load
 					physicalRegisters[reservationStations.get(index).bPRNum].data = dataMemory.load(reservationStations.get(index).aData + reservationStations.get(index).imm);
 					System.out.println("lw update: " + reservationStations.get(index).bPRNum + " "+ reservationStations.get(index).bData);
 					updateReady(reservationStations.get(index).bPRNum, index);
@@ -403,7 +411,6 @@ public class MIPSdecode {
 					}
 				}
 				
-				
 				RS.aRequired = true;
 				
 				RS.bPRNum = nextAvailablePE();
@@ -414,7 +421,7 @@ public class MIPSdecode {
 				RS.imm = imm;
 				if (rs == rt) {
 					RS.aReused = false;
-					RS.aReady = true;
+					//RS.aReady = true;
 				}
 				RS.instruction = instruction;
 				reservationStations.add(RS);
