@@ -1,65 +1,26 @@
 RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
 
-0 addi	$t0, $0, 1		0	0	1	0	1
-0 addi	$t1, $0, 0		0	0	2	0	0
-0 lui	$at, 4097		0	0	3	0	4097
-0 ori	$t2, $at, 0		3	268500992	4	0	0
-0 lw	$t3, 0($t2)		4	268500992	5	0	0
-0 addi	$t3, $t3, 1		5	0	6	0	1
-0 sw	$t3, 0($t2)		6	1	4	268500992	0
-0 lw	$t3, 4($t2)		4	268500992	7	0	4
-0 addi	$t3, $t3, 1		7	0	8	0	1
-0 sw	$t3, 4($t2)		8	1	4	0	4
-0 lw	$t3, 8($t2)		4	0	9	0	8
-0 addi	$t3, $t3, 1		9	0	10	0	1
-0 sw	$t3, 8($t2)		10	1	4	1	8
-0 beq	$t0, $t1, 3		1	1	2	0	3
 RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
 
 RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
 
 RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
 
-0 addi	$t0, $0, 7		0	0	1	0	7
-0 addi	$t1, $0, 0		0	0	2	0	0
-0 lui	$at, 4097		0	0	3	0	4097
-0 ori	$t2, $at, 0		3	268500992	4	0	0
-0 lw	$t3, 0($t2)		4	268500992	5	0	0
-0 addi	$t3, $t3, 1		5	0	6	0	1
-0 sw	$t3, 0($t2)		6	1	4	268500992	0
-0 beq	$t0, $t1, 3		1	7	2	0	3
-8 addi	$t1, $t1, 1		2	0	7	0	1
-8 addi	$t2, $t2, 4		4	0	8	0	4
-8 lw	$t3, 0($t2)		8	4	9	0	0
-8 addi	$t3, $t3, 1		9	0	10	0	1
-8 sw	$t3, 0($t2)		10	1	8	4	0
 RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
 
-0 addi	$t0, $0, 7		0	0	1	7	7
-0 addi	$t1, $0, 0		0	0	2	0	0
-0 lui	$at, 4097		0	0	3	268500992	4097
-0 ori	$t2, $at, 0		3	268500992	4	268500992	0
-0 lw	$t3, 0($t2)		4	268500992	5	0	0
-0 addi	$t3, $t3, 1		5	0	6	1	1
-0 sw	$t3, 0($t2)		6	1	4	268500992	0
-0 beq	$t0, $t1, 3		1	7	2	0	3
-8 addi	$t1, $t1, 1		2	0	7	1	1
-8 addi	$t2, $t2, 4		4	0	8	4	4
-8 lw	$t3, 0($t2)		8	4	9	0	0
-8 addi	$t3, $t3, 1		9	0	10	1	1
-8 sw	$t3, 0($t2)		10	1	8	4	0
 RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
 
-0 addi	$t0, $0, 7		0	0	1	7	7
-0 addi	$t1, $0, 0		0	0	2	0	0
-0 lui	$at, 4097		0	0	3	10010000	4097
-0 ori	$t2, $at, 0		3	10010000	4	10010000	0
-0 lw	$t3, 0($t2)		4	10010000	5	0	0
-0 addi	$t3, $t3, 1		5	0	6	1	1
-0 sw	$t3, 0($t2)		6	1	4	10010000	0
-0 beq	$t0, $t1, 3		1	7	2	0	3
-8 addi	$t1, $t1, 1		2	0	7	1	1
-8 addi	$t2, $t2, 4		4	0	8	4	4
-8 lw	$t3, 0($t2)		8	4	9	0	0
-8 addi	$t3, $t3, 1		9	0	10	1	1
-8 sw	$t3, 0($t2)		10	1	8	4	0
+RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
+
+RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
+
+RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
+
+RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
+
+RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
+
+RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
+
+RE.memIndex RE.instruction RE.aPRNum RE.aData RE.bPRNum RE.bData RE.imm
+

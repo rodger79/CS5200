@@ -9,14 +9,69 @@ instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bRead
 0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
-8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	7	0	false	false		false		true		1	
-8	addi	$t2, $t2, 4	8	0	4	0	true	true		false	8	0	false	false		false		true		4	
-8	lw	$t3, 0($t2)	35	0	8	0	false	true		false	9	0	false	false		false		true		0	
-8	addi	$t3, $t3, 1	8	0	9	0	true	true		false	10	0	false	false		false		true		1	
-8	sw	$t3, 0($t2)	43	0	10	0	false	true		false	8	0	false	true		false		true		0	
-8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	7	0	false	true		false		true		3	
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
-8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	7	1	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+14	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+14	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+14	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+14	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+14	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+14	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+20	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+26	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+26	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+26	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+26	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+26	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+26	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+32	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+38	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+44	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+44	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+44	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+44	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+44	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+44	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+50	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+50	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+50	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+50	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+50	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+50	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
 0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
 0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
@@ -28,14 +83,69 @@ instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bRead
 0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
-8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	7	0	false	false		false		true		1	
-8	addi	$t2, $t2, 4	8	0	4	0	true	true		false	8	0	false	false		false		true		4	
-8	lw	$t3, 0($t2)	35	0	8	0	false	true		false	9	0	false	false		false		true		0	
-8	addi	$t3, $t3, 1	8	0	9	0	true	true		false	10	0	false	false		false		true		1	
-8	sw	$t3, 0($t2)	43	0	10	0	false	true		false	8	0	false	true		false		true		0	
-8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	7	0	false	true		false		true		3	
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
-8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	7	1	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+14	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+14	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+14	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+14	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+14	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+14	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+20	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+26	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+26	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+26	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+26	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+26	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+26	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+32	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+38	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+44	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+44	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+44	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+44	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+44	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+44	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+50	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+50	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+50	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+50	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+50	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+50	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
 0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
 0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
@@ -47,11 +157,1001 @@ instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bRead
 0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
-8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	7	0	false	false		false		true		1	
-8	addi	$t2, $t2, 4	8	0	4	0	true	true		false	8	0	false	false		false		true		4	
-8	lw	$t3, 0($t2)	35	0	8	0	false	true		false	9	0	false	false		false		true		0	
-8	addi	$t3, $t3, 1	8	0	9	0	true	true		false	10	0	false	false		false		true		1	
-8	sw	$t3, 0($t2)	43	0	10	0	false	true		false	8	0	false	true		false		true		0	
-8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	7	0	false	true		false		true		3	
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
 instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
-8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	7	1	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+14	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+14	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+14	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+14	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+14	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+14	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+20	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+26	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+26	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+26	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+26	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+26	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+26	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+32	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+38	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+44	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+44	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+44	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+44	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+44	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+44	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+50	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+50	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+50	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+50	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+50	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+50	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
+0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
+0	lui	$at, 4097	15	0	0	0	false	false		false	3	0	false	false		false		true		4097	
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	addi	$t3, $t3, 1	8	0	5	0	true	true		false	6	0	false	false		false		true		1	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	1	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	1	true	true		false		true		3	
+13	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+13	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+13	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+13	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+13	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	1	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	2	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	1	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	2	true	true		false		true		3	
+18	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+18	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+18	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+18	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+18	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	3	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	2	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	3	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	3	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	2	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	3	true	true		false		true		3	
+23	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+23	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+23	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+23	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+23	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+23	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	3	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	3	true	true		false		true		3	
+23	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	3	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	3	true	true		false		true		3	
+23	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+28	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+28	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+28	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+28	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+28	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+28	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+23	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+28	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+23	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+28	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+33	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+33	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+33	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+33	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+33	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+33	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+23	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+28	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+33	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+23	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+28	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	5	true	true		false		true		3	
+33	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+38	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+23	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+28	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+33	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+38	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+23	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+28	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+33	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+38	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+43	addi	$t1, $t1, 1	8	0	5	7	true	true		false	2	0	false	false		false		true		1	
+43	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+43	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+43	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+43	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+43	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+13	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	8	true	true		false		true		3	
+18	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+23	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	8	true	true		false		true		3	
+28	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+33	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	8	true	true		false		true		3	
+38	beq	$t0, $t1, 3	4	0	1	0	false	true		false	5	7	true	true		false		true		3	
+43	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	8	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
+0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
+0	lui	$at, 4097	15	0	0	0	false	false		false	3	0	false	false		false		true		4097	
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	addi	$t3, $t3, 1	8	0	5	0	true	true		false	6	0	false	false		false		true		1	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+14	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+14	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+14	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+14	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+14	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+14	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+20	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+26	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+26	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+26	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+26	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+26	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+26	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+32	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+38	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+44	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+44	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+44	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+44	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+44	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+44	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+50	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+50	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+50	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+50	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+50	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+50	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
+0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
+0	lui	$at, 4097	15	0	0	0	false	false		false	3	0	false	false		false		true		4097	
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	addi	$t3, $t3, 1	8	0	5	0	true	true		false	6	0	false	false		false		true		1	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+14	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+14	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+14	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+14	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+14	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+14	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+20	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+26	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+26	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+26	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+26	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+26	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+26	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+32	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+38	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+44	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+44	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+44	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+44	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+44	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+44	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+50	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+50	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+50	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+50	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+50	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+50	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
+0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
+0	lui	$at, 4097	15	0	0	0	false	false		false	3	0	false	false		false		true		4097	
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	addi	$t3, $t3, 1	8	0	5	0	true	true		false	6	0	false	false		false		true		1	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+14	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+14	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+14	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+14	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+14	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+14	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+20	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+26	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+26	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+26	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+26	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+26	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+26	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+32	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+38	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+44	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+44	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+44	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+44	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+44	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+44	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+50	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+50	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+50	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+50	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+50	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+50	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
+0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
+0	lui	$at, 4097	15	0	0	0	false	false		false	3	0	false	false		false		true		4097	
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	addi	$t3, $t3, 1	8	0	5	0	true	true		false	6	0	false	false		false		true		1	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	true	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	true	true		false		true		3	
+4	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+4	addi	$t2, $t2, 4	8	0	4	0	true	true		false	7	0	false	false		false		true		4	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+4	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+4	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	1	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	1	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	7	4	true	true		false	4	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	8	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	1	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	8	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	2	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	8	true	true		false		true		0	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	8	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	1	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	8	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	2	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	8	true	true		false		true		0	
+12	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+12	addi	$t2, $t2, 4	8	0	4	8	true	true		false	6	0	false	false		false		true		4	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+12	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	8	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	3	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	8	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	2	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	12	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	8	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	12	true	true		false		true		0	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	8	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	3	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	8	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	2	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	12	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	8	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	12	true	true		false		true		0	
+16	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+16	addi	$t2, $t2, 4	8	0	6	12	true	true		false	4	0	false	false		false		true		4	
+16	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+16	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+16	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+16	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	16	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	3	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	16	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	12	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	16	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	12	true	true		false		true		0	
+16	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+16	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	16	true	true		false		true		0	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	16	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	3	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	16	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	12	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	16	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	12	true	true		false		true		0	
+16	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+16	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	16	true	true		false		true		0	
+20	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	16	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	16	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	5	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	16	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	20	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	16	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	20	true	true		false		true		0	
+16	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+16	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	16	true	true		false		true		0	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	20	true	true		false		true		0	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	16	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	5	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	16	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	4	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	20	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	16	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	20	true	true		false		true		0	
+16	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+16	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	16	true	true		false		true		0	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	20	true	true		false		true		0	
+24	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+24	addi	$t2, $t2, 4	8	0	6	20	true	true		false	4	0	false	false		false		true		4	
+24	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+24	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+24	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+24	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	24	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	5	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	24	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	20	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	20	true	true		false		true		0	
+16	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+16	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	20	true	true		false		true		0	
+24	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+24	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	24	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	5	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	24	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	20	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	20	true	true		false		true		0	
+16	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+16	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	20	true	true		false		true		0	
+24	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+24	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+28	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+28	addi	$t2, $t2, 4	8	0	4	24	true	true		false	6	0	false	false		false		true		4	
+28	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+28	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+28	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+28	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	24	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	10	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	24	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	28	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	28	true	true		false		true		0	
+16	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+16	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	28	true	true		false		true		0	
+24	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+24	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+28	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+28	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	28	true	true		false		true		0	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	24	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	10	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	24	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	6	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	28	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	28	true	true		false		true		0	
+16	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+16	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	28	true	true		false		true		0	
+24	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+24	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	24	true	true		false		true		0	
+28	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+28	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	28	true	true		false		true		0	
+32	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	6	28	true	true		false	4	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	32	true	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	10	true	false		false		true		0	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	32	true	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	11	true	true		false		true		3	
+4	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	1	true	false		false		true		0	
+4	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	4	true	true		false		true		0	
+8	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	28	true	false		false		true		0	
+8	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	32	true	true		false		true		0	
+12	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+12	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	28	true	true		false		true		0	
+16	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+16	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	32	true	true		false		true		0	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	28	true	true		false		true		0	
+24	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+24	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	32	true	true		false		true		0	
+28	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+28	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	28	true	true		false		true		0	
+32	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+32	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	32	true	true		false		true		0	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
+0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
+0	lui	$at, 4097	15	0	0	0	false	false		false	3	0	false	false		false		true		4097	
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	addi	$t3, $t3, 1	8	0	5	0	true	true		false	6	0	false	false		false		true		1	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+14	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+14	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+14	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+14	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+14	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+14	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+20	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+26	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+26	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+26	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+26	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+26	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+26	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+32	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+38	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+44	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+44	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+44	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+44	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+44	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+44	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+50	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+50	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+50	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+50	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+50	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+50	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
+0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
+0	lui	$at, 4097	15	0	0	0	false	false		false	3	0	false	false		false		true		4097	
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	addi	$t3, $t3, 1	8	0	5	0	true	true		false	6	0	false	false		false		true		1	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
+0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
+0	lui	$at, 4097	15	0	0	0	false	false		false	3	0	false	false		false		true		4097	
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	addi	$t3, $t3, 1	8	0	5	0	true	true		false	6	0	false	false		false		true		1	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+14	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+14	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+14	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+14	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+14	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+14	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+20	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+26	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+26	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+26	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+26	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+26	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+26	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+32	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+38	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+44	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+44	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+44	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+44	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+44	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+44	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+50	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+50	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+50	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+50	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+50	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+50	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
+0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
+0	lui	$at, 4097	15	0	0	0	false	false		false	3	0	false	false		false		true		4097	
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	addi	$t3, $t3, 1	8	0	5	0	true	true		false	6	0	false	false		false		true		1	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+14	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+14	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+14	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+14	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+14	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+14	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+20	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+26	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+26	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+26	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+26	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+26	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+26	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+32	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+38	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+44	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+44	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+44	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+44	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+44	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+44	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+50	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+50	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+50	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+50	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+50	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+50	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+0	addi	$t0, $0, 7	8	0	0	0	true	true		false	1	0	false	false		false		true		7	
+0	addi	$t1, $0, 0	8	0	0	0	true	true		false	2	0	false	false		false		true		0	
+0	lui	$at, 4097	15	0	0	0	false	false		false	3	0	false	false		false		true		4097	
+0	ori	$t2, $at, 0	13	0	3	0	false	true		false	4	0	false	false		false		true		0	
+0	lw	$t3, 0($t2)	35	0	4	0	false	true		false	5	0	false	false		false		true		0	
+0	addi	$t3, $t3, 1	8	0	5	0	true	true		false	6	0	false	false		false		true		1	
+0	sw	$t3, 0($t2)	43	0	6	0	false	true		false	4	0	false	true		false		true		0	
+0	beq	$t0, $t1, 3	4	0	1	0	false	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+8	addi	$t1, $t1, 1	8	0	2	0	true	true		false	5	0	false	false		false		true		1	
+8	addi	$t2, $t2, 4	8	0	4	268500992	true	true		false	7	0	false	false		false		true		4	
+8	lw	$t3, 0($t2)	35	0	7	0	false	true		false	8	0	false	false		false		true		0	
+8	addi	$t3, $t3, 1	8	0	8	0	true	true		false	9	0	false	false		false		true		1	
+8	sw	$t3, 0($t2)	43	0	9	0	false	true		false	7	0	false	true		false		true		0	
+8	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+14	addi	$t1, $t1, 1	8	0	5	1	true	true		false	2	0	false	false		false		true		1	
+14	addi	$t2, $t2, 4	8	0	7	268500996	true	true		false	4	0	false	false		false		true		4	
+14	lw	$t3, 0($t2)	35	0	4	0	false	true		false	6	0	false	false		false		true		0	
+14	addi	$t3, $t3, 1	8	0	6	0	true	true		false	8	0	false	false		false		true		1	
+14	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+14	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+20	addi	$t1, $t1, 1	8	0	2	2	true	true		false	5	0	false	false		false		true		1	
+20	addi	$t2, $t2, 4	8	0	4	268501000	true	true		false	6	0	false	false		false		true		4	
+20	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+20	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+20	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+20	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+26	addi	$t1, $t1, 1	8	0	5	3	true	true		false	2	0	false	false		false		true		1	
+26	addi	$t2, $t2, 4	8	0	6	268501004	true	true		false	4	0	false	false		false		true		4	
+26	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+26	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+26	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+26	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+32	addi	$t1, $t1, 1	8	0	2	4	true	true		false	5	0	false	false		false		true		1	
+32	addi	$t2, $t2, 4	8	0	4	268501008	true	true		false	6	0	false	false		false		true		4	
+32	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+32	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+32	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+32	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+38	addi	$t1, $t1, 1	8	0	5	5	true	true		false	2	0	false	false		false		true		1	
+38	addi	$t2, $t2, 4	8	0	6	268501012	true	true		false	4	0	false	false		false		true		4	
+38	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+38	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+38	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+38	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+44	addi	$t1, $t1, 1	8	0	2	6	true	true		false	5	0	false	false		false		true		1	
+44	addi	$t2, $t2, 4	8	0	4	268501016	true	true		false	6	0	false	false		false		true		4	
+44	lw	$t3, 0($t2)	35	0	6	0	false	true		false	7	0	false	false		false		true		0	
+44	addi	$t3, $t3, 1	8	0	7	0	true	true		false	9	0	false	false		false		true		1	
+44	sw	$t3, 0($t2)	43	0	9	0	false	true		false	6	0	false	true		false		true		0	
+44	beq	$t0, $t1, 3	4	0	1	7	true	true		false	5	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
+50	addi	$t1, $t1, 1	8	0	5	10	true	true		false	2	0	false	false		false		true		1	
+50	addi	$t2, $t2, 4	8	0	6	268501020	true	true		false	4	0	false	false		false		true		4	
+50	lw	$t3, 0($t2)	35	0	4	0	false	true		false	7	0	false	false		false		true		0	
+50	addi	$t3, $t3, 1	8	0	7	0	true	true		false	8	0	false	false		false		true		1	
+50	sw	$t3, 0($t2)	43	0	8	0	false	true		false	4	0	false	true		false		true		0	
+50	beq	$t0, $t1, 3	4	0	1	7	true	true		false	2	0	false	true		false		true		3	
+instruction		opcode	fct	aPRNum	aData	aReady	aRequired	aReused	bPRNum	bData	bReady	bRequired	bReused	immRequired	imm
