@@ -48,6 +48,8 @@ public class MIPSdecode {
 	//create list of memory items in the delay queue
 	private static ArrayList<delayedMemItem> memDelayList = new ArrayList<delayedMemItem>();
 	
+	//use delay on load 
+	static boolean delayedLoad = true;
 	
 	public static void main(String[] args) throws IOException  {
 		
@@ -127,7 +129,12 @@ public class MIPSdecode {
 					reservationStation RE = new reservationStation();
 					RE = reservationStations.get(i);
 					//update any available memory writes
-					//memoryUpdate();
+					if (delayedLoad) memoryUpdate();
+					//System.out.println("reg data cycle = current cycle: " + cycle);
+					//for (int j = 0; j < memDelayList.size(); j++) {
+						//if (memDelayList.get(j).available == true)
+						//	System.out.println(memDelayList.get(j).registerID + " " + memDelayList.get(j).data + " " + memDelayList.get(j).cycleAvailable + " " + cycle);
+					//}
 					
 					if ((RE.aReady || !RE.aRequired) && (RE.bReady || !RE.bRequired) && RE.available == true){
 						numReady++;
@@ -196,6 +203,7 @@ public class MIPSdecode {
 		
 		switch (reservationStations.get(index).opcode){
 			case 0: //syscall
+				System.out.println("Syscall");
 				retval = false;
 				programCont = false;
 				break;
@@ -203,9 +211,12 @@ public class MIPSdecode {
 				//shouldn't happen
 				break;	
 			case 4: //beq
+				System.out.println("beq: aData: " + reservationStations.get(index).aData + "bData: " + reservationStations.get(index).bData);
 				if (reservationStations.get(index).aData == reservationStations.get(index).bData){
 					//update issue program counter
-					programCounter += reservationStations.get(index).fct*4; 
+					System.out.println("old pc: " + Long.toHexString(programCounter));
+					programCounter += reservationStations.get(index).imm*4;
+					System.out.println("new pc: " + Long.toHexString(programCounter));
 				}else
 					//do nothing
 				break;	
@@ -229,34 +240,40 @@ public class MIPSdecode {
 				break;	
 			case 35: //lw
 				//debug purposes, directly load vs delay
-				physicalRegisters[reservationStations.get(index).bPRNum].data = dataMemory.load(reservationStations.get(index).aData + reservationStations.get(index).imm);
-				System.out.println("lw update: " + reservationStations.get(index).bPRNum + " "+ reservationStations.get(index).bData);
-				updateReady(reservationStations.get(index).bPRNum, index);
-				/*
-				//don't actually load it just call the load, the actual load will be handled after 3 cycles
-				long tempdata = dataMemory.load(reservationStations.get(index).aData + reservationStations.get(index).imm);
+				if (delayedLoad) {
+
+					//don't actually load it just call the load, the actual load will be handled after 3 cycles
+					long tempdata = dataMemory.load(reservationStations.get(index).aData + reservationStations.get(index).imm);
+					
+					System.out.println("rega data: " + physicalRegisters[reservationStations.get(index).aPRNum].data);
+					System.out.println("tempdata: " + Long.toHexString(tempdata));
+					System.out.println(Long.toHexString(dataMemory.load(reservationStations.get(index).aData + reservationStations.get(index).imm)));
+					
+					if (tempdata == -1) {
+						retval = false;
+						programCont = false;
+						System.out.println("errorload: bData: " + reservationStations.get(index).aData + " imm: " + reservationStations.get(index).imm );
+					} else {
+						delayedMemItem tempItem = new delayedMemItem();
+						tempItem.cycleAvailable = cycle + 3;
+						tempItem.data = tempdata;
+						tempItem.registerID = reservationStations.get(index).bPRNum;
+						tempItem.available = true;
+						memDelayList.add(tempItem);
+					}
+				}
+				else {
+					physicalRegisters[reservationStations.get(index).bPRNum].data = dataMemory.load(reservationStations.get(index).aData + reservationStations.get(index).imm);
+					System.out.println("lw update: " + reservationStations.get(index).bPRNum + " "+ reservationStations.get(index).bData);
+					updateReady(reservationStations.get(index).bPRNum, index);
+				}
 				
-				System.out.println("rega data: " + physicalRegisters[reservationStations.get(index).aPRNum].data);
-				System.out.println("tempdata: " + Long.toHexString(tempdata));
-				System.out.println(Long.toHexString(dataMemory.load(reservationStations.get(index).aData + reservationStations.get(index).imm)));
-				
-				if (tempdata == -1) {
-					retval = false;
-					programCont = false;
-					System.out.println("errorload: bData: " + reservationStations.get(index).bData + " imm: " + reservationStations.get(index).imm );
-				} else {
-					delayedMemItem tempItem = new delayedMemItem();
-					tempItem.cycleAvailable = cycle + 3;
-					tempItem.data = tempdata;
-					tempItem.registerID = reservationStations.get(index).bPRNum;
-					memDelayList.add(tempItem);
-				}*/
 
 				break;	
 			case 43: //sw
 				//need to fix store, //seems to be working now
 				long temp = reservationStations.get(index).bData + reservationStations.get(index).imm ;
-				//System.out.println("sw debug, id: " + Long.toHexString(temp) + "val: " +  reservationStations.get(index).aData );
+				System.out.println("sw debug, id: " + Long.toHexString(temp) + " "/* +  temp */ + "val: " +reservationStations.get(index).aData );
 				dataMemory.store(reservationStations.get(index).bData + reservationStations.get(index).imm  , reservationStations.get(index).aData);
 				
 				break;	
@@ -272,14 +289,20 @@ public class MIPSdecode {
 		//need to remove items from this list that have been loaded
 		for (int i = 0; i < memDelayList.size(); i++) {
 		//for (delayedMemItem mi : memDelayList){
-			if (memDelayList.get(i).cycleAvailable == cycle){
+			if (memDelayList.get(i).cycleAvailable == cycle && memDelayList.get(i).available ==true){
+				
+				System.out.println("data to update from delayed load: " + memDelayList.get(i).data);
+				
 				physicalRegisters[memDelayList.get(i).registerID].data = memDelayList.get(i).data;
 				physicalRegisters[memDelayList.get(i).registerID].valid = true;
+				System.out.println("phyReg val from delayed load: " + physicalRegisters[memDelayList.get(i).registerID].data );
 				updateReady(memDelayList.get(i).registerID, -1);
+				
 				System.out.println("data available, memItemID: " + memDelayList.get(i).registerID + " mi.data: " +  
 						memDelayList.get(i).data+ " mi.cycle: " +  memDelayList.get(i).cycleAvailable);
-				memDelayList.remove(i);
-				i--;
+				memDelayList.get(i).available = false;
+				//memDelayList.remove(i);
+				//i--;
 			}
 		}
 		
