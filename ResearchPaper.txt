@@ -1,26 +1,34 @@
-Outline
+
 Problem Statement: 
 How does one decrease sustainment costs for a system that is too expensive to replace? Once specific air force mission system consists of over 90% deprecated and vendor unsupported systems and  would cost 2.4 billion dollars to upgrade. It is common for these types of systems to be operated much differently than modern corporate IT enterprises. The sustainment cost provide to this program are approximately 2.5 million dollars per year. What possible solutions can be provided by modern architecture technology to solve the problem. Potential solutions include building a private cloud or virtualizing portions of their enterprise. 
 This brings up architectural challenges. How many of the systems consist of architectures that are not compatible with modern virtualization platforms that support primarily x86 and later architectures [reference needed]. Can some kind of instruction set translation be used to emulate these old architecture? How would virtualization affect endpoint devices that interface directly with hardware such as antenna controllers, receivers. How does this affect non internet protocol networks such as ATM ring networks or serial data connections. 
-Modern virtualization networks are designed in this way.
+Modern virtualization networks are designed in this way. 
 Can you combine portions of a modernized system with deprecated? How would that work.
-What architectures can be supported by which technology? Vmware supports some very deprecated systems such as RHEL 2.1, 3, 4; windows 3.1, NT, Server 2003; [8]
-IBM: Solaris 8, 9, Spark, HP-UX
-Proxmox
-Hyperv: RHEL 5.x and up, windows server 2008 and up[9]
-HP’s VSE
-How does hardware (processor architecture) support virtualization technology.
--processor permission levels
--TLB[10] - lots of IEEE references
-
-Background - where details come from
-	Architecture
-		How sol 8 works
-		How modern systems works
-		How to combine
-
+What architectures can be supported by which technology? 
+	-Vmware supports some very deprecated systems such as RHEL 2.1, 3, 4; windows 3.1, NT, Server 2003; [8]
+	-IBM: Solaris 8, 9, Spark, HP-UX
+	-Proxmox
+	-Hyperv: RHEL 5.x and up, windows server 2008 and up[9]
+	-HP’s VSE
+Architectural Security, How does hardware (processor architecture) support virtualization technology.
+	-processor permission levels
+	-TLB[10] - lots of IEEE references
+Assurance
+	Backup and recovery
+Cost
+	Licensing different types of hypervisor (open source IBM/vmware etc)
+	
 Build - how you put it together
-	Details
+-Architectural Impacts of Upgrading Depreccated Networks and Systems
+-Virtualization of ATM networks 
+-Virtualization with different instruction sets
+-Virtualizing specialized Hardware with mixed criticality systems
+-Security of Virtualized systems (the hypervisor)
+-Microprocessor Support for Virtualization
+-Setting up Server infrastructure
+	-Costs
+	-Impacts
+	-Sustainment
 Results
 	-how it works
 Conclusion - Build it
@@ -41,15 +49,10 @@ Virtualizing Deprecated Systems
 8. Compatibility guide vmware https://www.vmware.com/resources/compatibility/search.php?deviceCategory=software
 9. Microsoft hyperv compatibility guide https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows
 10. http://www.acis.ufl.edu/~girish/tmt_journal_ijpp_postprint.pdf
+11. Simulating ATM network management http://ieeexplore.ieee.org.libproxy.uccs.edu/document/830428/
+12. specialized Hardware with mixed criticality systems http://ieeexplore.ieee.org.libproxy.uccs.edu/document/7092453/
+13. Hypervisor Security Virtualization in Cloud Computing: Existing solutions and new approach
+14. Hypervisor Security http://ieeexplore.ieee.org.libproxy.uccs.edu/document/7600180/
 
 
-
-
-Hypervisor Security
-1. Virtualization in Cloud Computing: Existing solutions and new approach
-Architectural Security
-Assurance
-	Backup and recovery
-Cost
-	Licensing different types of hypervisor (open source IBM/vmware etc)
 
