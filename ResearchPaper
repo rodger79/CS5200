@@ -1,0 +1,55 @@
+Outline
+Problem Statement: 
+How does one decrease sustainment costs for a system that is too expensive to replace? Once specific air force mission system consists of over 90% deprecated and vendor unsupported systems and  would cost 2.4 billion dollars to upgrade. It is common for these types of systems to be operated much differently than modern corporate IT enterprises. The sustainment cost provide to this program are approximately 2.5 million dollars per year. What possible solutions can be provided by modern architecture technology to solve the problem. Potential solutions include building a private cloud or virtualizing portions of their enterprise. 
+This brings up architectural challenges. How many of the systems consist of architectures that are not compatible with modern virtualization platforms that support primarily x86 and later architectures [reference needed]. Can some kind of instruction set translation be used to emulate these old architecture? How would virtualization affect endpoint devices that interface directly with hardware such as antenna controllers, receivers. How does this affect non internet protocol networks such as ATM ring networks or serial data connections. 
+Modern virtualization networks are designed in this way.
+Can you combine portions of a modernized system with deprecated? How would that work.
+What architectures can be supported by which technology? Vmware supports some very deprecated systems such as RHEL 2.1, 3, 4; windows 3.1, NT, Server 2003; [8]
+IBM: Solaris 8, 9, Spark, HP-UX
+Proxmox
+Hyperv: RHEL 5.x and up, windows server 2008 and up[9]
+HP’s VSE
+How does hardware (processor architecture) support virtualization technology.
+-processor permission levels
+-TLB[10] - lots of IEEE references
+
+Background - where details come from
+	Architecture
+		How sol 8 works
+		How modern systems works
+		How to combine
+
+Build - how you put it together
+	Details
+Results
+	-how it works
+Conclusion - Build it
+	-good stuff
+	-bad stuff
+
+Virtualizing Deprecated Systems
+	Emulation vs Virtualization, also application streaming.(direct hosting of application in a stream, no virtualized OS).
+	Virtual Machines Compatible with all x86 computers [3]. Legacy applications can be relied on by it’s users [4]. Virtualization of mission critical back end system increases chance of outage (unix, nonx86).
+	IBM support for Solaris/ HPUX?
+1. Instruction Emulation and OS Supports of a Hybrid Binary Translator for x86 Instruction Set Architecture
+2. Native Simulation of Complex VLIW Instruction Sets using Static Binary Translation and Hardware-Assisted Virtualization
+3. https://www.computerworld.com/article/2551154/virtualization/emulation-or-virtualization-.html
+4. https://technet.microsoft.com/en-us/library/hh922964.aspx
+5. https://www.theregister.co.uk/2010/02/09/x86_virtualisation/
+6. https://www.pcworld.com/article/188014/oracle_solaris_sparc_virtualization_portfolio.html
+7. https://www.stratoscale.com/blog/cloud/private-cloud-vs-virtualization-technology/
+8. Compatibility guide vmware https://www.vmware.com/resources/compatibility/search.php?deviceCategory=software
+9. Microsoft hyperv compatibility guide https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows
+10. http://www.acis.ufl.edu/~girish/tmt_journal_ijpp_postprint.pdf
+
+
+
+
+Hypervisor Security
+1. Virtualization in Cloud Computing: Existing solutions and new approach
+Architectural Security
+Assurance
+	Backup and recovery
+Cost
+	Licensing different types of hypervisor (open source IBM/vmware etc)
+
